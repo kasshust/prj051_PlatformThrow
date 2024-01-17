@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b41a4fe32935ba4469d4ecb3db754b98, type: 3}
+  m_Name: PRJ080Preset
+  m_EditorClassIdentifier: 
+  m_FieldSprite:
+    m_keys: 01000000000000000200000004000000050000000300000006000000
+    m_values:
+    - m_Name: "\u81EA\u5BA4"
+      m_Sprites:
+      - {fileID: 21300000, guid: 9070e37211a591246ba66894de520b31, type: 3}
+      - {fileID: 21300000, guid: 3b1ab1bfdc3764c4881ec4b494cf2e84, type: 3}
+      - {fileID: 21300000, guid: 7ae3c137a8047134ca7079233ed832b6, type: 3}
+      - {fileID: 21300000, guid: f538ff5fb513f0449bf0e2813ef63839, type: 3}
+    - m_Name: "\u30C7\u30D0\u30C3\u30B0\u90E8\u5C4B"
+      m_Sprites:
+      - {fileID: 21300000, guid: 01e7db593563eb947b109027fb031fcd, type: 3}
+      - {fileID: 21300000, guid: 01e7db593563eb947b109027fb031fcd, type: 3}
+      - {fileID: 21300000, guid: 01e7db593563eb947b109027fb031fcd, type: 3}
+      - {fileID: 21300000, guid: 01e7db593563eb947b109027fb031fcd, type: 3}
+    - m_Name: "\u99C5\u5468\u8FBA"
+      m_Sprites:
+      - {fileID: 21300000, guid: c2c9e202faaf23045b768d330dbb42d9, type: 3}
+      - {fileID: 21300000, guid: 535629017044a8844953695ad5ed3355, type: 3}
+      - {fileID: 21300000, guid: dad2453810fa5004eb3541664c4765f5, type: 3}
+      - {fileID: 21300000, guid: 150b2ec1470ba3b49b9ea4865c561308, type: 3}
+    - m_Name: "\u30B3\u30F3\u30D3\u30CB\u524D"
+      m_Sprites:
+      - {fileID: 21300000, guid: 1197835181e83994c9a23ae199bbc2e4, type: 3}
+      - {fileID: 21300000, guid: 94170715bf36ff64e9031b2b014c9503, type: 3}
+      - {fileID: 21300000, guid: dc5958b5c8465004ea34075848c02187, type: 3}
+      - {fileID: 21300000, guid: 1b3d6ee1930e4e54babfd1597a23bc4f, type: 3}
+    - m_Name: "\u516C\u5712"
+      m_Sprites:
+      - {fileID: 21300000, guid: 7523edef912a9d44bbcc88b92b6dd5cb, type: 3}
+      - {fileID: 21300000, guid: ce2432e79a6139a438df90c0b99a8698, type: 3}
+      - {fileID: 21300000, guid: 1701941a3b3b0b4439e360314fb5755f, type: 3}
+      - {fileID: 21300000, guid: 3770b56da39a4874cbd6663d73598e8a, type: 3}
+    - m_Name: "\u81EA\u5B85\u524D"
+      m_Sprites:
+      - {fileID: 21300000, guid: 57cb10754fcb0e049832eff9f697407b, type: 3}
+      - {fileID: 21300000, guid: 57cb10754fcb0e049832eff9f697407b, type: 3}
+      - {fileID: 21300000, guid: 57cb10754fcb0e049832eff9f697407b, type: 3}
+      - {fileID: 21300000, guid: 57cb10754fcb0e049832eff9f697407b, type: 3}
+    - m_Name: "\u88CF\u8DEF\u5730"
+      m_Sprites:
+      - {fileID: 21300000, guid: f3fb85a4ca480794d8cd1ec035d92185, type: 3}
+      - {fileID: 21300000, guid: 9e7df84f07ee92e42b8ab0af881853bf, type: 3}
+      - {fileID: 21300000, guid: 732f1f8468bb4b44fadcff1159403fcb, type: 3}
+      - {fileID: 21300000, guid: cca4efde65de94643a639e8139963fd6, type: 3}
+  m_ActDict:
+    m_keys: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000
+    m_values:
+    - m_ActName: "\u30BB\u30FC\u30D6"
+      m_NeedPoint: 0
+      m_NotEqualFungusName: 0
+    - m_ActName: "\u79FB\u52D5"
+      m_NeedPoint: 0
+      m_NotEqualFungusName: 0
+    - m_ActName: "\u30A2\u30A4\u30C6\u30E0"
+      m_NeedPoint: 0
+      m_NotEqualFungusName: 0
+    - m_ActName: "\u884C\u52D5\u7D42\u4E86"
+      m_NeedPoint: 0
+      m_NotEqualFungusName: 0
+    - m_ActName: "\u50CD\u304F"
+      m_NeedPoint: 1
+      m_NotEqualFungusName: 0
+    - m_ActName: "\u4F11\u61A9\u3059\u308B"
+      m_NeedPoint: 1
+      m_NotEqualFungusName: 0
+    - m_ActName: "\u30B3\u30F3\u30D3\u30CB"
+      m_NeedPoint: 0
+      m_NotEqualFungusName: 0
+    - m_ActName: "\u51FA\u4F1A\u3046"
+      m_NeedPoint: 1
+      m_NotEqualFungusName: 0
+    - m_ActName: "\u81EA\u52D5\u8CA9\u58F2\u6A5F"
+      m_NeedPoint: 0
+      m_NotEqualFungusName: 0
+    - m_ActName: "\u904B\u52D5"
+      m_NeedPoint: 1
+      m_NotEqualFungusName: 0
+    - m_ActName: "\u99C5\u524D\u306E\u304A\u5E97"
+      m_NeedPoint: 0
+      m_NotEqualFungusName: 0
+    - m_ActName: "\u672C\u5C4B"
+      m_NeedPoint: 0
+      m_NotEqualFungusName: 0
+    - m_ActName: "\u305D\u3046\u3044\u3046\u304A\u5E97"
+      m_NeedPoint: 0
+      m_NotEqualFungusName: 0
+  m_ItemList: {fileID: 11400000, guid: 3d56d0ca05cec4242966320744e70b4d, type: 2}
+  m_ShopList: {fileID: 11400000, guid: 9d876f53aa1867947b7d6a06be15b482, type: 2}

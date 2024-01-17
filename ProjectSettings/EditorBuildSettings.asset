@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Project/Common/Scene/StartScene/InitScene.unity
+    guid: fbf51a062553e3c4aa7835b63f7f6aa3
+  - enabled: 1
+    path: Assets/Project/Common/Scene/StartScene/LogoScene.unity
+    guid: 546ba5a027f3cea48812641a6a1f94fb
+  - enabled: 1
+    path: Assets/Project/Common/Scene/StartScene/TitleScene.unity
+    guid: c2f0bfcd91f0f5a40b263258ba7c70d4
+  - enabled: 1
+    path: Assets/Project/Common/Scene/DebugScene/DebugScene.unity
+    guid: 46680127fe7560849a086ab128a19793
+  - enabled: 1
+    path: Assets/Project/PRJ5X/PlatformGameTest.unity
+    guid: f62afd7699b28354688267acc1ccf830
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 812e3e3834e09d94cbb198773a8912ca,
+      type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 801cb23957d5f8c43a133e8cb3b23c01,
+      type: 2}

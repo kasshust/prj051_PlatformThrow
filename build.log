@@ -1,0 +1,44 @@
+[Licensing::Module] Successfully connected to LicensingClient on channel: LicenseClient-kassh
+Entitlement-based licensing initiated
+[LicensingClient] Licenses Updated successfully in LicensingClient
+
+LICENSE SYSTEM [20201219 0:54:7] Next license update check is after 2020-03-22T15:13:28
+
+
+LICENSE SYSTEM [20201219 0:54:7] Machine binding 1 mismatch: (value of current machine) 00325-95800-00000-AAOEM != 00325-96166-58272-AAOEM (value in license file). Reason might be there is a hardware change on this machine after the license was activated.
+
+
+LICENSE SYSTEM [20201219 0:54:7] Current license is already valid and activated. Skipping license activation process (Provided username/password will be ignored).
+Built from '2019.4/staging' branch; Version is '2019.4.11f1 (2d9804dddde7) revision 2988036'; Using compiler version '191627012'
+OS: 'Windows 10  (10.0.0) 64bit' Language: 'ja' Physical Memory: 12157 MB
+[Licensing::Module] Serial number assigned to: "F4-HYPM-QMY8-QYNM-GYRB-XXXX"\nBatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+[Package Manager] Server::Start -- Port 62228 was selected
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2019.4.11f1\Editor\Unity.exe
+-batchmode
+-quit
+-logFile
+.\build.log
+-projectPath
+C:\gameAssets\prj000_onechan
+-executeMethod
+BuildClass.Build
+Successfully changed project path to: C:\gameAssets\prj000_onechan
+C:/gameAssets/prj000_onechan
+別のUnityが起動中で、このプロジェクトを開いているようです。
+
+複数のUnityを起動して同じプロジェクトを開くことはできません。
+
+プロジェクト: C:/gameAssets/prj000_onechan 
+(Filename: C:\buildslave\unity\build\Editor/Src/Application/Application.cpp Line: 403)
+
+Fatal Error! 別のUnityが起動中で、このプロジェクトを開いているようです。
+
+複数のUnityを起動して同じプロジェクトを開くことはできません。
+
+プロジェクト: C:/gameAssets/prj000_onechan
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Utilities/Argv.cpp Line: 376)
+
+Exiting without the bug reporter. Application will terminate with return code 1

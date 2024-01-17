@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0db2963847cad4c98e40249f1a71ef, type: 3}
+  m_Name: GeneralFlagSet
+  m_EditorClassIdentifier: 
+  m_GeneralFlagSet:
+    m_keys:
+    - General
+    - Otukai
+    - Daily
+    - Otoshimono
+    m_values:
+    - m_GeneralFlagDict:
+        m_keys:
+        - Start
+        - End
+        m_values:
+        - Explain: "\u306F\u3058\u3081\u304B\u3089\u3092\u62BC\u3057\u305F"
+          m_isRequesting: 0
+          m_Finished: 0
+        - Explain: "\u30A8\u30F3\u30C7\u30A3\u30F3\u30B0\u3092\u898B\u305F"
+          m_isRequesting: 0
+          m_Finished: 0
+    - m_GeneralFlagDict:
+        m_keys:
+        - NEKO1
+        - NEKO2
+        - NEKO3
+        - NEKO4
+        - NEKO5
+        m_values:
+        - Explain: "\u306D\u3053\u304A\u3064\u304B\u3044"
+          m_isRequesting: 0
+          m_Finished: 0
+        - Explain: "\u306D\u3053\u304A\u3064\u304B\u3044"
+          m_isRequesting: 0
+          m_Finished: 0
+        - Explain: "\u306D\u3053\u304A\u3064\u304B\u3044"
+          m_isRequesting: 0
+          m_Finished: 0
+        - Explain: "\u306D\u3053\u304A\u3064\u304B\u3044"
+          m_isRequesting: 0
+          m_Finished: 0
+        - Explain: "\u306D\u3053\u304A\u3064\u304B\u3044"
+          m_isRequesting: 0
+          m_Finished: 0
+    - m_GeneralFlagDict:
+        m_keys:
+        - Penalty
+        - Daily2
+        - Daily3
+        - Daily4
+        m_values:
+        - Explain: "\u30DA\u30CA\u30EB\u30C6\u30A3\u3092\u7D42\u4E86\u3055\u305B\u305F"
+          m_isRequesting: 0
+          m_Finished: 1
+        - Explain: 
+          m_isRequesting: 0
+          m_Finished: 0
+        - Explain: 
+          m_isRequesting: 0
+          m_Finished: 0
+        - Explain: 
+          m_isRequesting: 0
+          m_Finished: 0
+    - m_GeneralFlagDict:
+        m_keys:
+        - Otoshimono
+        m_values:
+        - Explain: 
+          m_isRequesting: 0
+          m_Finished: 0

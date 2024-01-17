@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Layer
+  - ChangebleText
+  - AnimationLayer
+  - Wall
+  - Ball
+  - Block
+  - Bar
+  - WallBlock
+  - Field
+  - Enemy
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - Char
+  - 
+  - Ground
+  - 
+  - 
+  - 
+  - Player
+  - Enemy
+  - 
+  - 
+  - 
+  - PostProcess
+  - 
+  - background
+  - trantition
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 3621989873
+    locked: 0
+  - name: dummy
+    uniqueID: 2467367057
+    locked: 0
+  - name: dummy
+    uniqueID: 948876033
+    locked: 0
+  - name: char
+    uniqueID: 3047333821
+    locked: 0
+  - name: dummy1
+    uniqueID: 3187587001
+    locked: 0
+  - name: dummy2
+    uniqueID: 2587081995
+    locked: 0
+  - name: transition
+    uniqueID: 1778956125
+    locked: 0
