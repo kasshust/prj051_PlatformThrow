@@ -328,7 +328,7 @@ public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCha
     }
 
     private RaycastHit2D[] hits = new RaycastHit2D[5];
-    public GameObject GetTargetClosestCharNonAlloc(Vector3 position, float radius, LayerMask mask, bool isInCamera = false)
+    public GameObject GetTargetClosestObjectNonAlloc(Vector3 position, float radius, LayerMask mask, bool isInCamera = false)
     {
         int results = Physics2D.CircleCastNonAlloc(position, radius, Vector2.zero, hits, Mathf.Infinity, mask);
         
@@ -361,7 +361,7 @@ public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCha
         }
     }
     
-    public GameObject GetTargetClosestChar(Vector3 position, float radius, LayerMask mask, bool isInCamera = false)
+    public GameObject GetTargetClosestObject(Vector3 position, float radius, LayerMask mask, bool isInCamera = false)
     {
         var hits = Physics2D.CircleCastAll(position, radius, Vector2.zero, 100.0f, mask);
 
@@ -399,7 +399,7 @@ public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCha
     
     public void RockOnTarget(Vector3 position, float radius, LayerMask mask, bool isInCamera = false)
     {
-        m_RockOnTarget = GetTargetClosestChar(
+        m_RockOnTarget = GetTargetClosestObject(
            position,
            radius,
            mask,
@@ -409,7 +409,7 @@ public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCha
 
     public void RockOnTargetNonAlloc(Vector3 position, float radius, LayerMask mask, bool isInCamera = false)
     {
-        m_RockOnTarget = GetTargetClosestCharNonAlloc(
+        m_RockOnTarget = GetTargetClosestObjectNonAlloc(
            position,
            radius,
            mask,

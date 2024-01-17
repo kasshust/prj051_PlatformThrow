@@ -26,7 +26,7 @@ public class CommonInputModule : SingletonMonoBehaviourFast<CommonInputModule>
         if (Gamepad.current == null) return false;
         return Gamepad.current.bButton.wasPressedThisFrame;
     }
-    public static bool xPressed()
+    public static bool XPressed()
     {
         if (Gamepad.current == null) return false;
         return Gamepad.current.xButton.wasPressedThisFrame;

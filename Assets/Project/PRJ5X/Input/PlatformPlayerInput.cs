@@ -109,7 +109,7 @@ public abstract class PlatformPlayerInput : MonoBehaviour
         else if (m_KeyBind.Player.Triangle.ReadValue<float>() != 0.0f) Player.SetAnimInputHold((int)AnimInput.Y);
 
         // X
-        if (CommonInputModule.xPressed()) { 
+        if (CommonInputModule.XPressed()) { 
             Player.SetAnimInputPress((int)AnimInput.X); 
             m_Xbarrage += 1.0f;
             m_XresetTimer = 0.0f;
