@@ -12,4 +12,5 @@ interface ICatchable
     public void Catched(GameObject Parent);
     public void Throwed(ref ThrowProperty throwProperty);
     public void Carried();
+    public bool IsCatchable();
 }

@@ -117,7 +117,7 @@ public class TestPlayerInput : PlatformPlayerInput
         // 〇
         if (CommonInputModule.XPressed())
         {
-            m_Player.HnadAction();
+            m_Player.HnadAction(moveValue);
         }
 
     }

@@ -56,6 +56,8 @@ public class PlayerController2D : Controller2D
 
         if (!hit) return;
 
+        /*
+
         if (hit.collider.gameObject.CompareTag("Boss"))
         {
             m_CircleCollider2D = hit.collider as CircleCollider2D;
@@ -79,6 +81,8 @@ public class PlayerController2D : Controller2D
 
             moveAmount = (m_Reverse);
         }
+
+        */
     }
 
     protected RaycastHit2D EnemyCollisionCheck(ref Vector2 moveAmount) {

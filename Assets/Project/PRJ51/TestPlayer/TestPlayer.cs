@@ -365,32 +365,38 @@ public class TestPlayer : PlatformPlayerBase
 
     #region ACTION
 
-    public void HnadAction() {
+    public void HnadAction(Vector2 moveValue) {
         if (m_CatchableTarget == null)
         {
-            Catch();
+            CheckCatch(moveValue);
         }
         else
         {
-            Throw();
+            Throw(moveValue);
         }
     }
 
     //　キャッチ
-    public void Catch()
+    public void CheckCatch(Vector2 moveValue)
     {
+        float CatchRadius = 0.5f;
+
         GameObject o = GetTargetClosestObject(
             transform.position,
-            1,
+            CatchRadius,
             LayerMask.GetMask("Ball"),
             true
         );
 
+        DebugUtility.DrawCircle(transform.position, CatchRadius, Color.cyan, 8);
+
         if (o == null) return;
 
         m_CatchableTarget = o.GetComponent<ICatchable>();
-        if (m_CatchableTarget == null) return;
+        if (m_CatchableTarget == null)          return;
+        if (!m_CatchableTarget.IsCatchable())   return;
 
+        // キャッチ処理
         m_CatchableTarget.Catched(gameObject);
         o.transform.position = transform.position;
 
@@ -399,14 +405,13 @@ public class TestPlayer : PlatformPlayerBase
     }
 
     ThrowProperty m_ThrowProperty;
-    public void Throw()
+    public void Throw(Vector2 moveValue)
     {
         if (m_CatchableTarget == null) return;
 
         // 軌道
-        ;
-        m_ThrowProperty.Velocity.x = m_XDirection * 15.0f;
-        m_ThrowProperty.Velocity.y = 0.0f;
+        m_ThrowProperty.Velocity = moveValue * 15.0f;
+        // m_ThrowProperty.Velocity.y = 0.0f;
 
         m_CatchableTarget.Throwed(ref m_ThrowProperty);
 

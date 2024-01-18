@@ -542,6 +542,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f0846cc5d52f7447a6880ded1b1a717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_State: 0
+  m_Level: 0
   m_Rigidbody2D: {fileID: 120159693}
 --- !u!50 &120159693
 Rigidbody2D:
@@ -551,7 +553,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120159687}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -559,10 +561,10 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0152021e4c9aab849bbcef601ac41be2, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &439056470
 GameObject:
@@ -1707,9 +1709,9 @@ GameObject:
   - component: {fileID: 7745499784173807655}
   - component: {fileID: 7745499784173807657}
   - component: {fileID: 7745499784173807658}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: TestEnemy
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
