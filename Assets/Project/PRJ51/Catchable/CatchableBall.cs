@@ -15,7 +15,7 @@ public abstract class CatchableBall : MonoBehaviour, ICatchable
 {
     protected GameObject m_Parent;
 
-    [SerializeField] protected BallState m_State = BallState.Default;
+    [SerializeField] public BallState m_State = BallState.Default;
     [SerializeField] protected int m_Level = 0;
 
     public abstract void Carried();

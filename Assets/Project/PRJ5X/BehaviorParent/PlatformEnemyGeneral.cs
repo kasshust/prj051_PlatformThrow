@@ -25,7 +25,7 @@ public abstract class PlatformEnemyBase : PlatformCharacterBase {
 
     public override void Dead()
     {
-        SpawnMoney();
+        // SpawnMoney();
         CreateEffect();
     }
 

@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0472: この型の値が 'null' に等しくなることはないので、式の結果は常に同じです
+dotnet_diagnostic.CS0472.severity = error

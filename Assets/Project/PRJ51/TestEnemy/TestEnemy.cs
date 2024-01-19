@@ -45,4 +45,9 @@ public class TestEnemy : PlatformEnemyBase
     public override void Damage(ref PlatformActionManager.AttackInfo attackInfo, RaycastHit2D hit, GameObject g = null)
     {
     }
+
+    public override void Dead()
+    {
+        Destroy(gameObject);
+    }
 }

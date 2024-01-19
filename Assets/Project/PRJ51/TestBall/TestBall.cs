@@ -1,10 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RedBlueGames.Tools;
 
 public class TestBall : CatchableBall
 {
     [SerializeField] Rigidbody2D m_Rigidbody2D;
+    
+    public float m_CircleRadius;
+    public LayerMask m_CharMask;
+
+    RaycastHit2D m_Hit;
+
+    PlatformActionManager.AttackInfo m_AttackInfo;
+    PlatformActionManager.ReplyInfo  m_ReplyInfo;
+
+    private void Update()
+    {
+        if (m_State == BallState.Bound || m_State == BallState.Throwed)
+        {
+            RaycastHit2D m_Hit = EnemyCollisionCheck();
+            if (m_Hit)
+            {
+                BehaviorImpactReceiver receiver = m_Hit.collider.gameObject.GetComponent<BehaviorImpactReceiver>();
+                m_Rigidbody2D.velocity *= -1;
+
+                if (receiver == null) return;
+
+                m_AttackInfo.AttackSet = PlatformActionManager.AttackSet.Player;
+                m_AttackInfo.Direction = m_Rigidbody2D.velocity.normalized;
+                m_AttackInfo.ImpactValue = m_Rigidbody2D.velocity.magnitude;
+                m_AttackInfo.DamageValue = 0;
+
+                receiver.ReceiveImpactGetReply(ref m_AttackInfo, m_Hit, ref m_ReplyInfo);
+            }
+        }
+    }
+
+    protected RaycastHit2D EnemyCollisionCheck()
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, m_CircleRadius, Vector2.zero, Mathf.Infinity, m_CharMask);
+        DebugUtility.DrawCircle(transform.position, m_CircleRadius, Color.red, 10);
+
+        return hit;
+    }
+
 
     public override bool IsCatchable()
     {
@@ -49,9 +89,6 @@ public class TestBall : CatchableBall
     }
 
     private void HitWall() {
-
-        Debug.Log("ï«è’ìÀ");
-
         switch (m_State)
         {
             case BallState.Throwed:
@@ -64,9 +101,6 @@ public class TestBall : CatchableBall
     }
 
     private void HitGround() {
-
-        Debug.Log("ínñ è’ìÀ");
-
         switch (m_State)
         {
             case BallState.Throwed:
