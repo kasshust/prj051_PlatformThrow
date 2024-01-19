@@ -23,15 +23,15 @@ public class TestBall : CatchableBall
             if (m_Hit)
             {
                 BehaviorImpactReceiver receiver = m_Hit.collider.gameObject.GetComponent<BehaviorImpactReceiver>();
-                m_Rigidbody2D.velocity *= -1;
-
                 if (receiver == null) return;
 
                 m_AttackInfo.AttackSet = PlatformActionManager.AttackSet.Player;
-                m_AttackInfo.Direction = m_Rigidbody2D.velocity.normalized;
+                m_AttackInfo.Direction =   m_Rigidbody2D.velocity.normalized;
                 m_AttackInfo.ImpactValue = m_Rigidbody2D.velocity.magnitude;
                 m_AttackInfo.DamageValue = 0;
 
+
+                m_Rigidbody2D.velocity *= -1;
                 receiver.ReceiveImpactGetReply(ref m_AttackInfo, m_Hit, ref m_ReplyInfo);
             }
         }

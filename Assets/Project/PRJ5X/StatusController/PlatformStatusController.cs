@@ -18,6 +18,12 @@ public abstract class PlatformStatusController : MonoBehaviour
         return m_CharacterBase.m_CharacterStatus.IsInvincible;
     }
 
+    public virtual bool IsTempInvincible()
+    {
+        if (m_CharacterBase == null) return false;
+        return m_CharacterBase.m_CharacterStatus.IsTempInvincible;
+    }
+
     public virtual bool IsDead()
     {
         if (m_CharacterBase == null) return false;

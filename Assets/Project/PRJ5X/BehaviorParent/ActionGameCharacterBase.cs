@@ -12,6 +12,10 @@ public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCha
     [SerializeField, ReadOnly, Foldout("ActionGameCharacterBase Param")]
     public CharacterStatus       m_CharacterStatus;
 
+
+    [SerializeField, Foldout("ActionGameCharacterBase Param")]           protected float m_TempInvincibleTime = 0.2f;
+    [SerializeField, ReadOnly, Foldout("ActionGameCharacterBase Param")] protected float m_CurrentTempInvincibleTime = 0.0f;
+
     [SerializeField, Foldout("ActionGameCharacterBase Param")]
     protected Animator  m_Animator;
 
@@ -82,6 +86,7 @@ public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCha
     protected virtual void Update()
     {
         CheckAlive();
+        CheckTempInvincible();
         CheckRockOnTarget();
         UpdateAnimatorSpeed();
         UpdateZeroGravityParam();
@@ -92,6 +97,22 @@ public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCha
             m_CharacterStatus.IsDead = true;
             Dead();
         }
+    }
+
+    private void CheckTempInvincible()
+    {
+        if (m_CharacterStatus.IsTempInvincible)
+        {
+            m_CurrentTempInvincibleTime += Time.deltaTime;
+            if (m_CurrentTempInvincibleTime >= m_TempInvincibleTime) {
+                m_CurrentTempInvincibleTime = 0.0f;
+                m_CharacterStatus.IsTempInvincible = false;
+            }
+        }
+    }
+
+    public void SetTempInvincible(bool b) {
+        m_CharacterStatus.IsTempInvincible = b;
     }
 
     public bool IsDead() {

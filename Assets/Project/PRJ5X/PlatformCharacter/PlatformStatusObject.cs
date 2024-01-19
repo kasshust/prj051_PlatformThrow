@@ -10,14 +10,14 @@ public struct CharacterStatus {
         public float MaxValue;
     }
 
-    public bool             IsDead;
-    public bool             IsInvincible;
+    public bool IsDead;
+    public bool IsInvincible;
+    public bool IsTempInvincible;
     public FloatParam       Hp;
     public FloatParam       FlirtEndure;
     public bool             SuperArmer;
     public FloatParam       Strengthen;
     public bool             IsGuard;
-
     public int              Money;
 
     public void CalHp(float value) {

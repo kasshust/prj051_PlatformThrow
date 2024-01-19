@@ -17,6 +17,7 @@ public class CommonStatusController : PlatformStatusController
 
     public override void ReceiveDamage(ref PlatformActionManager.AttackInfo attackInfo, RaycastHit2D hit, ref PlatformActionManager.ReplyInfo replyInfo, BehaviorImpactSender sender, GameObject g = null)
     {
+        m_CharacterBase.SetTempInvincible(true);
         m_CharacterBase.CalHp(-attackInfo.DamageValue);
         m_CharacterBase.CalFlirtEndure(-attackInfo.FlirtEndure);
         m_CharacterBase.Damage(ref attackInfo, hit);

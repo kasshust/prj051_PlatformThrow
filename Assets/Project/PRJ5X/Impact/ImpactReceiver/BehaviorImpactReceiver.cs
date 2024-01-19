@@ -68,7 +68,8 @@ public class BehaviorImpactReceiver : MonoBehaviour
     private bool ImpactGetReply(ref PlatformActionManager.AttackInfo attackInfo, RaycastHit2D hit, ref PlatformActionManager.ReplyInfo replyInfo, BehaviorImpactSender sender, GameObject g = null)
     {
         if (m_Status == null) return false;
-        
+
+        if (m_Status.IsTempInvincible())return false;
         if (m_Status.IsInvincible())    return false;
         if (m_Status.IsDead())          return false;
 
