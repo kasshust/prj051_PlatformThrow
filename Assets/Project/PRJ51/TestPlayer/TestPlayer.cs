@@ -2,8 +2,9 @@
 
 using UnityEngine;
 using RedBlueGames.Tools;
-using System;
 using Pixeye.Unity;
+using System;
+
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
@@ -22,7 +23,7 @@ public class TestPlayer : PlatformPlayerBase
 
     [SerializeField, Foldout("SE")] private FMODUnity.EventReference m_EnemyStepSE;
 
-    ICatchable m_CatchableTarget;
+
 
 
     protected override void Wake()
@@ -102,8 +103,6 @@ public class TestPlayer : PlatformPlayerBase
         UpdateCollisionWithFloorCeil();             // 主に天井や床による速度制限
         UpdateXDirection();
 
-        UpdateCatchableObject();
-
         // アニメーション・効果音
         // UpdateBaseAnimatorParam();
         // UpdateAnimatorParam();
@@ -111,11 +110,7 @@ public class TestPlayer : PlatformPlayerBase
         // UpdateSoundEffect();
     }
 
-    private void UpdateCatchableObject() {
-        if (m_CatchableTarget != null) {
-            m_CatchableTarget.Carried();
-        }
-    }
+
 
     private void UpdateControlDirection()
     {
@@ -143,7 +138,6 @@ public class TestPlayer : PlatformPlayerBase
                 }
                 else
                 {
-
                     if (m_RockOnTarget != null)
                     {
                         Vector3 dir = m_RockOnTarget.transform.position - transform.position;
@@ -368,7 +362,7 @@ public class TestPlayer : PlatformPlayerBase
     public void HnadAction(Vector2 moveValue) {
         if (m_CatchableTarget == null)
         {
-            CheckCatch(moveValue);
+            Catch(SearchCatchObject());
         }
         else
         {
@@ -376,48 +370,17 @@ public class TestPlayer : PlatformPlayerBase
         }
     }
 
-    //　キャッチ
-    public void CheckCatch(Vector2 moveValue)
+    protected override void CatchActionSetting(GameObject o)
     {
-        float CatchRadius = 0.5f;
-
-        GameObject o = GetTargetClosestObject(
-            transform.position,
-            CatchRadius,
-            LayerMask.GetMask("Ball"),
-            true
-        );
-
-        DebugUtility.DrawCircle(transform.position, CatchRadius, Color.cyan, 8);
-
-        if (o == null) return;
-
-        m_CatchableTarget = o.GetComponent<ICatchable>();
-        if (m_CatchableTarget == null)          return;
-        if (!m_CatchableTarget.IsCatchable())   return;
-
-        // キャッチ処理
-        m_CatchableTarget.Catched(gameObject);
         o.transform.position = transform.position;
-
-        // SetControlState(ControlState.RockOn);
-        // m_SavedRockOnXDir = m_XDirection;
     }
 
-    ThrowProperty m_ThrowProperty;
-    public void Throw(Vector2 moveValue)
+    protected override void ThrowActionSetting(Vector2 moveValue)
     {
-        if (m_CatchableTarget == null) return;
-
-        // 軌道
-        m_ThrowProperty.Velocity = moveValue * 15.0f;
-        // m_ThrowProperty.Velocity.y = 0.0f;
-
-        m_CatchableTarget.Throwed(ref m_ThrowProperty);
-
-
-        m_CatchableTarget = null;
+        m_ThrowProperty.Velocity = moveValue * 10.0f;
+        m_ThrowProperty.AttackSet = PlatformActionManager.AttackSet.Player;
     }
+
 
     // ジャンプ時
     public bool PlayJump()

@@ -130,6 +130,7 @@ MonoBehaviour:
   m_CharacterStatus:
     IsDead: 0
     IsInvincible: 0
+    IsTempInvincible: 0
     Hp:
       Value: 0
       MaxValue: 0
@@ -142,6 +143,8 @@ MonoBehaviour:
       MaxValue: 0
     IsGuard: 0
     Money: 0
+  m_TempInvincibleTime: 0.2
+  m_CurrentTempInvincibleTime: 0
   m_Animator: {fileID: 8619531619236208570}
   m_MotionSpeed: 1
   m_SlowMotion: 0
@@ -165,6 +168,7 @@ MonoBehaviour:
   m_MinJumpVelocity: 0
   m_VelocityXSmoothing: 0
   m_SharedMaterial: {fileID: 0}
+  m_CatchRadius: 0.5
   m_MaxJumpHeight: 1
   m_MinJumpHeight: 0.4
   m_TimeToJumpApex: 0.4
@@ -183,33 +187,8 @@ MonoBehaviour:
   m_Strengthen: 0
   m_SavedRockOnXDir: 0
   m_SpeedMultiplier: 1
-  m_Trigger: 0
-  m_TargetVelocity: 0
-  m_Head: {fileID: 0}
-  m_Body: {fileID: 0}
-  m_HandFront: {fileID: 0}
-  m_HandBack: {fileID: 0}
-  m_LegLeft: {fileID: 0}
-  m_LegRight: {fileID: 0}
-  m_BlowMesh: {fileID: 0}
-  m_KnuckleMesh: []
-  m_HandGunMesh: []
-  m_ShotGunMesh: {fileID: 0}
+  m_MaxVelocity: 0
   m_EnemyStepSE:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  m_WeaponChangeSE:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  m_StyleChangeSE:
     Guid:
       Data1: 0
       Data2: 0
@@ -320,7 +299,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: c270089b952ee5146a86daafbddfa143, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

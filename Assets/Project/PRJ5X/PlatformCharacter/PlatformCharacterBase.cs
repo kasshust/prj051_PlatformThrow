@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pixeye.Unity;
+using RedBlueGames.Tools;
 
 [RequireComponent(typeof(Controller2D))]
 public abstract class PlatformCharacterBase : ActionGameCharacterBase
@@ -71,6 +72,11 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
     protected MaterialPropertyBlock m_MaterialPropertyBlock;
 
+    protected ICatchable m_CatchableTarget;
+
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
+    protected float m_CatchRadius = 0.5f;
+
     [Foldout("Setup PlatformMoveParam")]                    public float m_MaxJumpHeight = 1;
     [Foldout("Setup PlatformMoveParam")]                    public float m_MinJumpHeight =  .4f;
     [Foldout("Setup PlatformMoveParam")]                    public float m_TimeToJumpApex = .4f;
@@ -125,6 +131,7 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
     protected override void Update()
     {
         base.Update();
+        UpdateCatchableObject();
     }
 
     public override void ForceSetVelocityX(float velocityX)
@@ -279,6 +286,67 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
         // 踏ん張り用
         if (Mathf.Sign(m_Velocity.x) != Mathf.Sign(m_DirectionalInput.x) && Mathf.Abs(m_DirectionalInput.x) > 0.01f) m_Animator.SetBool("missdirect", true);
         else m_Animator.SetBool("missdirect", false);
+    }
+
+    private void UpdateCatchableObject()
+    {
+        if (m_CatchableTarget != null)
+        {
+            m_CatchableTarget.Carried();
+        }
+    }
+
+    //　キャッチ
+    public GameObject SearchCatchObject()
+    {
+        GameObject o = GetTargetClosestObject(
+            transform.position,
+            m_CatchRadius,
+            LayerMask.GetMask("Ball"),
+            true
+        );
+
+        DebugUtility.DrawCircle(transform.position, m_CatchRadius, Color.cyan, 8);
+
+        return o;
+    }
+
+    public void Catch(GameObject o) {
+
+        if (o == null) return;
+
+        ICatchable c = o.GetComponent<ICatchable>();
+        if (c == null) return;
+        if (!c.IsCatchable()) return;
+
+
+        m_CatchableTarget = c;
+        m_CatchableTarget.Catched(gameObject);
+
+        CatchActionSetting(o);
+
+    }
+
+    virtual protected void CatchActionSetting(GameObject o) {
+        o.transform.position = transform.position;
+    }  
+
+    // スロー
+    protected ThrowProperty m_ThrowProperty;
+    public void Throw(Vector2 moveValue)
+    {
+        if (m_CatchableTarget == null) return;
+
+        ThrowActionSetting(moveValue);
+        m_CatchableTarget.Throwed(ref m_ThrowProperty);
+        m_CatchableTarget = null;
+        
+    }
+
+    virtual protected void ThrowActionSetting(Vector2 moveValue) {
+        m_ThrowProperty.Velocity = moveValue * 10.0f;
+        m_ThrowProperty.AttackSet = PlatformActionManager.AttackSet.All;
+
     }
 
     protected void UpdateCollisionWithFloorCeil()

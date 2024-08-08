@@ -45,7 +45,7 @@ public class TestEnemyAI : PlatformEnemyAI
             })
         */
             .Do("ChaseTarget", () => {
-                if (ChaseTarget()) return TaskStatus.Success;
+                if (ChasePlayer()) return TaskStatus.Success;
                 else return TaskStatus.Continue;
             })
         .End();
@@ -63,7 +63,7 @@ public class TestEnemyAI : PlatformEnemyAI
                     else return TaskStatus.Success;
                 })
                 .Do("ChaseTarget", () => {
-                    if (ChaseTarget()) return TaskStatus.Success;
+                    if (ChasePlayer()) return TaskStatus.Success;
                     else return TaskStatus.Continue;
                 })
                 .Do("BlowAttack", () => {
@@ -147,7 +147,7 @@ public class TestEnemyAI : PlatformEnemyAI
                     else return TaskStatus.Success;
                 })
                 .Do("ChaseTarget", () => {
-                    if (ChaseTarget()) return TaskStatus.Success;
+                    if (ChasePlayer()) return TaskStatus.Success;
                     else return TaskStatus.Continue;
                 })
                 .Do("BlowAttack", () => {
@@ -215,18 +215,22 @@ public class TestEnemyAI : PlatformEnemyAI
         m_BehaviorTree = new BehaviorTreeBuilder(gameObject)
         .RepeatForever()
             .Sequence()
-                .Do("ChaseTarget", () => {
-                    if (ChaseTarget()) return TaskStatus.Success;
+                .Do("ChaseBall", () => {
+                    if (ChaseBall()) return TaskStatus.Success;
                     else return TaskStatus.Continue;
                 })
-                .WaitTime(0.2f)
-                /*
-                .Do("EscapeFromTarget", () => {
-                    if (EscapeFromTarget(5.0f)) return TaskStatus.Success;
-                    else return TaskStatus.Continue;
+                .WaitTime(0.05f)
+                .Do("Catch", () => {
+                    Catch();
+                    return TaskStatus.Success;
                 })
-                .WaitTime(0.2f)
-                */
+                .WaitTime(0.05f)
+                .Do("Throw", () => {
+                    Throw();
+                    return TaskStatus.Success;
+                })
+                .WaitTime(0.05f)
+
             .End()
         .End()
         .Build();
@@ -234,7 +238,6 @@ public class TestEnemyAI : PlatformEnemyAI
 
     protected override void Init()
     {
-        RockOnTarget();
         m_Enemy = (TestEnemy)m_CharacterBase;
     }
 
@@ -246,12 +249,34 @@ public class TestEnemyAI : PlatformEnemyAI
 
     private void Jump()
     {
-        // m_Enemy.PlayJump();
+        m_Enemy.PlayJump();
     }
 
-    private bool ChaseTarget()
+    private void Catch() {
+        m_Enemy.Catch(m_Enemy.SearchCatchObject());
+    }
+
+    private void Throw() {
+        m_Enemy.Throw(Vector2.right * m_Enemy.m_XDirection);
+    }
+
+
+    private bool ChasePlayer()
     {
-        if (m_CharacterBase.m_RockOnTarget == null) RockOnTarget();
+        if (m_CharacterBase.m_RockOnTarget == null) RockOnPlayer();
+
+        if (m_CharacterBase.m_RockOnTarget != null)
+        {
+            m_Enemy.m_Direction = (Vector2)(m_CharacterBase.m_RockOnTarget.transform.position - m_CharacterBase.transform.position);
+            m_Enemy.InputDirection(m_Enemy.m_Direction.normalized);
+            if (GetTargetDistance() < 0.2f) return true;
+        }
+        return false;
+    }
+
+    private bool ChaseBall()
+    {
+        if (m_CharacterBase.m_RockOnTarget == null) RockOnBall();
 
         if (m_CharacterBase.m_RockOnTarget != null)
         {
@@ -263,7 +288,7 @@ public class TestEnemyAI : PlatformEnemyAI
     }
 
     public bool BlowAttack() {
-        if (m_CharacterBase.m_RockOnTarget == null) RockOnTarget();
+        if (m_CharacterBase.m_RockOnTarget == null) RockOnPlayer();
 
         if (m_CharacterBase.m_RockOnTarget != null)
         {
@@ -280,7 +305,7 @@ public class TestEnemyAI : PlatformEnemyAI
 
     public bool EscapeFromTarget(float th)
     {
-        if (m_CharacterBase.m_RockOnTarget == null) RockOnTarget();
+        if (m_CharacterBase.m_RockOnTarget == null) RockOnPlayer();
 
         if (m_CharacterBase.m_RockOnTarget != null)
         {

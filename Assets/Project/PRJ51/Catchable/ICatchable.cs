@@ -4,10 +4,11 @@ using UnityEngine;
 
 public struct ThrowProperty
 {
+    public PlatformActionManager.AttackSet AttackSet;
     public Vector2 Velocity;
 }
 
-interface ICatchable
+public interface ICatchable
 {
     public void Catched(GameObject Parent);
     public void Throwed(ref ThrowProperty throwProperty);

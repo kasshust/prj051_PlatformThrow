@@ -12,32 +12,29 @@ public class TestBall : CatchableBall
 
     RaycastHit2D m_Hit;
 
-    PlatformActionManager.AttackInfo m_AttackInfo;
-    PlatformActionManager.ReplyInfo  m_ReplyInfo;
 
     private void Update()
     {
         if (m_State == BallState.Bound || m_State == BallState.Throwed)
         {
-            RaycastHit2D m_Hit = EnemyCollisionCheck();
+            RaycastHit2D m_Hit = CollisionCheck();
             if (m_Hit)
             {
                 BehaviorImpactReceiver receiver = m_Hit.collider.gameObject.GetComponent<BehaviorImpactReceiver>();
                 if (receiver == null) return;
-
-                m_AttackInfo.AttackSet = PlatformActionManager.AttackSet.Player;
+                
                 m_AttackInfo.Direction =   m_Rigidbody2D.velocity.normalized;
                 m_AttackInfo.ImpactValue = m_Rigidbody2D.velocity.magnitude;
                 m_AttackInfo.DamageValue = 0;
 
-
-                m_Rigidbody2D.velocity *= -1;
-                receiver.ReceiveImpactGetReply(ref m_AttackInfo, m_Hit, ref m_ReplyInfo);
+                if (receiver.ReceiveImpactGetReply(ref m_AttackInfo, m_Hit, ref m_ReplyInfo)) {
+                    m_Rigidbody2D.velocity *= -1;
+                };
             }
         }
     }
 
-    protected RaycastHit2D EnemyCollisionCheck()
+    protected RaycastHit2D CollisionCheck()
     {
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, m_CircleRadius, Vector2.zero, Mathf.Infinity, m_CharMask);
         DebugUtility.DrawCircle(transform.position, m_CircleRadius, Color.red, 10);
@@ -48,7 +45,7 @@ public class TestBall : CatchableBall
 
     public override bool IsCatchable()
     {
-        if (m_State == BallState.Throwed || m_State == BallState.Carried) return false;
+        if (m_State == BallState.Carried) return false;
         return true;
     }
 
@@ -68,9 +65,11 @@ public class TestBall : CatchableBall
 
     override public void Throwed(ref ThrowProperty throwProperty)
     {
-        GetComponent<Rigidbody2D>().velocity = throwProperty.Velocity;
-        m_State = BallState.Throwed;
-        m_Parent = null;
+        m_Rigidbody2D.velocity = throwProperty.Velocity;
+        m_AttackInfo.AttackSet = throwProperty.AttackSet;
+
+        m_State         = BallState.Throwed;
+        m_Parent        = null;
         m_Rigidbody2D.WakeUp();
     }
 
@@ -110,6 +109,7 @@ public class TestBall : CatchableBall
             
             case BallState.Bound:
                 LevelReset();
+                m_AttackInfo.AttackSet = PlatformActionManager.AttackSet.All;
                 m_State = BallState.Default;
                 break;
             default:

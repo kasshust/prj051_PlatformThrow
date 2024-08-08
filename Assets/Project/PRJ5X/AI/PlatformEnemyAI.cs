@@ -31,12 +31,20 @@ public abstract class PlatformEnemyAI : PlatformCharacterAI
     [SerializeField, Foldout("PlatformEnemyAI Param")]
     protected LayerMask m_PlayerMask;
 
+    [SerializeField, Foldout("PlatformEnemyAI Param")]
+    protected LayerMask m_BallMask;
+
     [SerializeField, ReadOnly, Foldout("PlatformEnemyAI Param")]
     protected ActionType m_ActionType;
 
-    protected void RockOnTarget()
+    protected void RockOnPlayer()
     {
         if (m_CharacterBase.m_RockOnTarget == null) m_CharacterBase.RockOnTarget(transform.position, 50.0f, m_PlayerMask);
+    }
+
+    protected void RockOnBall()
+    {
+        if (m_CharacterBase.m_RockOnTarget == null) m_CharacterBase.RockOnTarget(transform.position, 50.0f, m_BallMask);
     }
 
     protected bool IsRigid()
