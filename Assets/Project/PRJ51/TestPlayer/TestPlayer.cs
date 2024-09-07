@@ -86,7 +86,7 @@ public class TestPlayer : PlatformPlayerBase
         UpdateXDirection();
 
         // アニメーション・効果音
-        // UpdateBaseAnimatorParam();
+        UpdateBaseAnimatorParam();
         // UpdateAnimatorParam();
         // UpdateAnimation();
         // UpdateSoundEffect();

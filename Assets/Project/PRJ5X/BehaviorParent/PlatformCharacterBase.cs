@@ -224,34 +224,34 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
         //　左右に動いているかどうか
         if (Mathf.Abs(m_Velocity.x) > 0.01 || Mathf.Abs(m_Velocity.y) > 0.01)
         {
-            m_Animator.SetBool("move", true);
+            m_Animator.SetBool("Move", true);
         }
-        else m_Animator.SetBool("move", false);
+        else m_Animator.SetBool("Move", false);
 
         // 上昇or下降
         if (m_Velocity.y > 0.1)
         {
-            m_Animator.SetBool("fall", false);
-            m_Animator.SetBool("jumpup", true);
+            m_Animator.SetBool("Fall", false);
+            m_Animator.SetBool("JumpUp", true);
         }
         else if (m_Velocity.y < -0.1)
         {
-            m_Animator.SetBool("fall", true);
-            m_Animator.SetBool("jumpup", false);
+            m_Animator.SetBool("Fall", true);
+            m_Animator.SetBool("JumpUp", false);
         }
         else
         {
-            m_Animator.SetBool("jumpup", false);
-            m_Animator.SetBool("fall", false);
+            m_Animator.SetBool("JumpUp", false);
+            m_Animator.SetBool("Fall", false);
         }
 
         // ウォークバック 向いている方向と進行方向が異なる
-        if (Mathf.Sign(m_Direction.x) != Mathf.Sign(m_DirectionalInput.x)) m_Animator.SetBool("walkback", true);
-        else m_Animator.SetBool("walkback", false);
+        if (Mathf.Sign(m_Direction.x) != Mathf.Sign(m_DirectionalInput.x)) m_Animator.SetBool("WalkBack", true);
+        else m_Animator.SetBool("WalkBack", false);
 
         // 踏ん張り用
-        if (Mathf.Sign(m_Velocity.x) != Mathf.Sign(m_DirectionalInput.x) && Mathf.Abs(m_DirectionalInput.x) > 0.01f) m_Animator.SetBool("missdirect", true);
-        else m_Animator.SetBool("missdirect", false);
+        if (Mathf.Sign(m_Velocity.x) != Mathf.Sign(m_DirectionalInput.x) && Mathf.Abs(m_DirectionalInput.x) > 0.01f) m_Animator.SetBool("MissDirect", true);
+        else m_Animator.SetBool("MissDirect", false);
     }
 
     private void UpdateCatchableObject()
@@ -285,7 +285,6 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
         if (c == null) return;
         if (!c.IsCatchable()) return;
 
-
         m_CatchableTarget = c;
         m_CatchableTarget.Catched(gameObject);
 
@@ -299,18 +298,18 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
 
     // スロー
     protected ThrowProperty m_ThrowProperty;
-    public void Throw(Vector2 moveValue)
+    public void Throw(Vector2 MoveValue)
     {
         if (m_CatchableTarget == null) return;
 
-        ThrowActionSetting(moveValue);
+        ThrowActionSetting(MoveValue);
         m_CatchableTarget.Throwed(ref m_ThrowProperty);
         m_CatchableTarget = null;
         
     }
 
-    virtual protected void ThrowActionSetting(Vector2 moveValue) {
-        m_ThrowProperty.Velocity = moveValue * 10.0f;
+    virtual protected void ThrowActionSetting(Vector2 MoveValue) {
+        m_ThrowProperty.Velocity = MoveValue * 10.0f;
         m_ThrowProperty.AttackSet = PlatformActionManager.AttackSet.All;
 
     }

@@ -51,6 +51,7 @@ public class TestBall : CatchableBall
 
     override public void Carried()
     {
+        // ‚±‚±ƒyƒAƒŒƒ“ƒg‚Ìè‚Éİ’è‚µ‚È‚¢‚Æ
         transform.position = m_Parent.transform.position;
         m_Rigidbody2D.velocity = Vector2.zero;
         m_Rigidbody2D.angularVelocity = 0.0f;
