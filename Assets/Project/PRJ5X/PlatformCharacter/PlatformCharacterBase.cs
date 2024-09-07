@@ -24,75 +24,43 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
         Counter,
     }
 
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
-    protected Vector3 m_Velocity;
-
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
-    protected Vector2 m_DirectionalInput;
-
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
-    public Vector2 m_Direction;
-
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
-    public Vector2 m_DamageDirection;
-
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
-    public Vector2 m_GuardDirection;
-
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
-    public int m_XDirection = 1;
-
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
-    public ControlState m_ControlState;
-
-    [SerializeField, /*ReadOnly,*/ Foldout("PlatformCharacterBase Param")]
-    public StatusState m_StatusState;
-
     protected Controller2D m_Controller;
     public Controller2D GetController2D() { return m_Controller; }
-
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
-    protected bool m_Gravitable = true;
-
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
-    protected float m_Gravity;
-
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
-    protected float m_MaxJumpVelocity;
-
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
-    protected float m_MinJumpVelocity;
-
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
-    protected float m_VelocityXSmoothing;
-
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
-    protected Material m_SharedMaterial;
-
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
-    protected MaterialPropertyBlock m_MaterialPropertyBlock;
-
     protected ICatchable m_CatchableTarget;
 
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]
-    protected float m_CatchRadius = 0.5f;
+    
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected Vector3               m_Velocity;
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected Vector2               m_DirectionalInput;
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  public Vector2                  m_Direction;
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  public Vector2                  m_DamageDirection;
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  public Vector2                  m_GuardDirection;
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  public int                      m_XDirection = 1;
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  public ControlState             m_ControlState;
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  public StatusState              m_StatusState;
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected bool                  m_Gravitable = true;
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected float                 m_Gravity;
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected float                 m_MaxJumpVelocity;
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected float                 m_MinJumpVelocity;
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected float                 m_VelocityXSmoothing;
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected Material              m_SharedMaterial;
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected MaterialPropertyBlock m_MaterialPropertyBlock;
+    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected float                 m_CatchRadius = 0.5f;
 
-    [Foldout("Setup PlatformMoveParam")]                    public float m_MaxJumpHeight = 1;
-    [Foldout("Setup PlatformMoveParam")]                    public float m_MinJumpHeight =  .4f;
-    [Foldout("Setup PlatformMoveParam")]                    public float m_TimeToJumpApex = .4f;
-    [Foldout("Setup PlatformMoveParam")]                    public float m_AccelerationTimeAirborne = .25f;
-    [Foldout("Setup PlatformMoveParam")]                    public float m_AccelerationTimeGrounded = .19f;
-    [Foldout("Setup PlatformMoveParam")]                    public float m_MoveSpeed = 4;
-
-    [Foldout("Setup PlatformMoveParam")]                    public Vector2 m_WallJumpClimb;
-    [Foldout("Setup PlatformMoveParam")]                    public Vector2 m_WallJumpOff;
-    [Foldout("Setup PlatformMoveParam")]                    public Vector2 m_WwallLeap;
-    [Foldout("Setup PlatformMoveParam")]                    public float m_WallSlideSpeedMax = 3;
-    [Foldout("Setup PlatformMoveParam")]                    public float m_WallStickTime = .25f;
-
-    [SerializeField, Foldout("Setup PlatformMoveParam")]    protected float m_TimeToWallUnstick;
-    [SerializeField, Foldout("Setup PlatformMoveParam")]    protected bool m_WallSliding;
-    [SerializeField, Foldout("Setup PlatformMoveParam")]    protected int m_WallDirX;
+    
+    [Foldout("Setup PlatformMoveParam")]        public float    m_MaxJumpHeight = 1;
+    [Foldout("Setup PlatformMoveParam")]        public float    m_MinJumpHeight =  .4f;
+    [Foldout("Setup PlatformMoveParam")]        public float    m_TimeToJumpApex = .4f;
+    [Foldout("Setup PlatformMoveParam")]        public float    m_AccelerationTimeAirborne = .25f;
+    [Foldout("Setup PlatformMoveParam")]        public float    m_AccelerationTimeGrounded = .19f;
+    [Foldout("Setup PlatformMoveParam")]        public float    m_MoveSpeed = 4;
+    [Foldout("Setup PlatformMoveParam")]        public Vector2  m_WallJumpClimb;
+    [Foldout("Setup PlatformMoveParam")]        public Vector2  m_WallJumpOff;
+    [Foldout("Setup PlatformMoveParam")]        public Vector2  m_WwallLeap;
+    [Foldout("Setup PlatformMoveParam")]        public float    m_WallSlideSpeedMax = 3;
+    [Foldout("Setup PlatformMoveParam")]        public float    m_WallStickTime = .25f;
+    [Foldout("Setup PlatformMoveParam")]        protected float m_TimeToWallUnstick;
+    [Foldout("Setup PlatformMoveParam")]        protected bool  m_WallSliding;
+    [Foldout("Setup PlatformMoveParam")]        protected int   m_WallDirX;
 
 
     public abstract void Damage(ref PlatformActionManager.AttackInfo attackInfo, RaycastHit2D hit, GameObject g = null);
@@ -240,8 +208,6 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
         }
     }
 
-
-
     protected virtual void UpdateBaseAnimatorParam()
     {
         //　壁すり
@@ -361,7 +327,7 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
         {
             if (m_Controller.collisions.slidingDownMaxSlope)
             {
-                m_Velocity.y += m_Controller.collisions.slopeNormal.y * -m_Gravity * Time.deltaTime * m_MotionSpeed;
+                m_Velocity.y += m_Controller.collisions.slopeNormal.y * -m_Gravity * Time.deltaTime * m_BaseMotionSpeed;
             }
             else
             {
@@ -415,6 +381,4 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
 
         }
     }
-
-
 }

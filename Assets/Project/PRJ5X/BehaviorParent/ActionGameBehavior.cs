@@ -47,7 +47,6 @@ public abstract class ActionGameBehavior<T> : MonoBehaviour, IActionGameBehavior
     virtual protected void Start(){
         Init();
     }
-    
 
     private void ForceDestroy()
     {

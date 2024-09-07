@@ -385,7 +385,7 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
-  - Music
+  - Misc
   - SE
   BanksToLoad: []
   LiveUpdatePort: 9264

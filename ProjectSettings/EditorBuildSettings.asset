@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Project/Common/Scene/StartScene/InitScene.unity
     guid: fbf51a062553e3c4aa7835b63f7f6aa3
   - enabled: 1
-    path: Assets/Project/Common/Scene/StartScene/LogoScene.unity
-    guid: 546ba5a027f3cea48812641a6a1f94fb
-  - enabled: 1
     path: Assets/Project/Common/Scene/StartScene/TitleScene.unity
     guid: c2f0bfcd91f0f5a40b263258ba7c70d4
   - enabled: 1

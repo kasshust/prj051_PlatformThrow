@@ -6,36 +6,25 @@ using Pixeye.Unity;
 
 public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCharacterBase>
 {
-    [SerializeField, Foldout("ActionGameCharacterBase Param")]
-    protected PlatformStatusObject m_PlatformStatusObject;
-
-    [SerializeField, ReadOnly, Foldout("ActionGameCharacterBase Param")]
-    public CharacterStatus       m_CharacterStatus;
-
-
-    [SerializeField, Foldout("ActionGameCharacterBase Param")]           protected float m_TempInvincibleTime = 0.2f;
-    [SerializeField, ReadOnly, Foldout("ActionGameCharacterBase Param")] protected float m_CurrentTempInvincibleTime = 0.0f;
-
-    [SerializeField, Foldout("ActionGameCharacterBase Param")]
-    protected Animator  m_Animator;
-
-    protected float     m_TimeScale = 1.0f;
-    protected float     m_MotionBaseSpeed = 1.0f;
-    [SerializeField, ReadOnly, Foldout("ActionGameCharacterBase Param")] protected float     m_MotionSpeed = 1.0f;
-
-    [SerializeField, ReadOnly, Foldout("ActionGameCharacterBase Param")] protected bool      m_SlowMotion;
-    [SerializeField, ReadOnly, Foldout("ActionGameCharacterBase Param")] protected float     m_SlowMotionGain = 0.02f;
-    [SerializeField, ReadOnly, Foldout("ActionGameCharacterBase Param")] protected float     m_SlowMotionTime = 0.0f;
-
-    [SerializeField, ReadOnly, Foldout("ActionGameCharacterBase Param")]
-    protected bool  m_ZeroGravity = false;
-
-    [SerializeField, ReadOnly, Foldout("ActionGameCharacterBase Param")]
-    protected float m_ZeroGravityTime = 0.0f;
-
     protected Camera m_MainCamera;
+    protected float  m_TimeScale = 1.0f;
+    protected float  m_MotionBaseSpeed = 1.0f;
 
+    [SerializeField, Foldout("ActionGameCharacterBase Param")] protected PlatformStatusObject           m_PlatformStatusObject;
+    [SerializeField, Foldout("ActionGameCharacterBase Param")] protected Animator m_Animator;
+    [SerializeField, Foldout("ActionGameCharacterBase Param")] protected float                          m_TempInvincibleTime = 0.2f;
 
+    [SerializeField, Foldout("ActionGameCharacterBase Param"), ReadOnly] public CharacterStatus         m_CharacterStatus;
+    [SerializeField, Foldout("ActionGameCharacterBase Param"), ReadOnly] protected float                m_CurrentTempInvincibleTime = 0.0f;
+    [SerializeField, Foldout("ActionGameCharacterBase Param"), ReadOnly] protected float                m_SlowMotionGain = 0.02f;
+    [SerializeField, Foldout("ActionGameCharacterBase Param"), ReadOnly] protected float                m_BaseMotionSpeed = 1.0f;
+    [SerializeField, Foldout("ActionGameCharacterBase Param"), ReadOnly] protected bool                 m_SlowMotion;
+    [SerializeField, Foldout("ActionGameCharacterBase Param"), ReadOnly] protected float                m_SlowMotionTime = 0.0f;
+    [SerializeField, Foldout("ActionGameCharacterBase Param"), ReadOnly] protected bool                 m_ZeroGravity = false;
+    [SerializeField, Foldout("ActionGameCharacterBase Param"), ReadOnly] protected float                m_ZeroGravityTime = 0.0f;
+    [SerializeField, Foldout("ActionGameCharacterBase Param"), ReadOnly] public GameObject              m_RockOnTarget;
+    
+    
     protected override void Wake()
     {
         m_MainCamera = Camera.main;
@@ -64,7 +53,7 @@ public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCha
     public override ActionGameCharacterBase CreateInit() {
         m_SlowMotion        = false;
         m_ZeroGravity       = false;
-        m_MotionSpeed       = 1.0f;
+        m_BaseMotionSpeed       = 1.0f;
         m_SlowMotionTime    = 0.0f;
         m_ZeroGravityTime   = 0.0f;
         return this;
@@ -123,7 +112,7 @@ public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCha
 
     private void UpdateAnimatorSpeed() {
         UpdateHitStopParam();
-        if (m_Animator != null) m_Animator.speed = m_MotionSpeed * m_TimeScale;
+        if (m_Animator != null) m_Animator.speed = m_BaseMotionSpeed * m_TimeScale;
     }
 
     #region ステータス計算
@@ -196,8 +185,8 @@ public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCha
             }
         }
 
-        if (m_SlowMotion) m_MotionSpeed = m_MotionBaseSpeed * m_SlowMotionGain;
-        else m_MotionSpeed = m_MotionBaseSpeed;
+        if (m_SlowMotion) m_BaseMotionSpeed = m_MotionBaseSpeed * m_SlowMotionGain;
+        else m_BaseMotionSpeed = m_MotionBaseSpeed;
     }
 
     public virtual void StartHitStop(float time) {
@@ -333,7 +322,7 @@ public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCha
     #endregion
 
     #region ロックオン
-    [ReadOnly, Foldout("ActionGameCharacterBase Param")] public GameObject m_RockOnTarget;
+    
 
     // Deactiveの場合ロックオンをはずす
     private void CheckRockOnTarget()

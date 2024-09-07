@@ -29,18 +29,16 @@ public abstract class PlatformPlayerInput : MonoBehaviour
     }
 
     protected StandardKeyBind m_KeyBind;
-
-    [SerializeField, ReadOnly, Foldout("Barrage")] protected float m_Abarrage = 0.0f;
-    [SerializeField, ReadOnly, Foldout("Barrage")] protected float m_Bbarrage = 0.0f;
-    [SerializeField, ReadOnly, Foldout("Barrage")] protected float m_Xbarrage = 0.0f;
-    [SerializeField, ReadOnly, Foldout("Barrage")] protected float m_Ybarrage = 0.0f;
-
-    [SerializeField, Foldout("Barrage")]           private float m_ResetInterval = 30.0f;
-    [SerializeField, ReadOnly, Foldout("Barrage")] private float m_AresetTimer = 0.0f;
-    [SerializeField, ReadOnly, Foldout("Barrage")] private float m_BresetTimer = 0.0f;
-    [SerializeField, ReadOnly, Foldout("Barrage")] private float m_XresetTimer = 0.0f;
-    [SerializeField, ReadOnly, Foldout("Barrage")] private float m_YresetTimer = 0.0f;
-
+     
+    [SerializeField, ReadOnly, Foldout("Barrage")]      protected float m_Abarrage = 0.0f;
+    [SerializeField, ReadOnly, Foldout("Barrage")]      protected float m_Bbarrage = 0.0f;
+    [SerializeField, ReadOnly, Foldout("Barrage")]      protected float m_Xbarrage = 0.0f;
+    [SerializeField, ReadOnly, Foldout("Barrage")]      protected float m_Ybarrage = 0.0f;
+    [SerializeField, ReadOnly, Foldout("Barrage")]      private float   m_ResetInterval = 30.0f;
+    [SerializeField, ReadOnly, Foldout("Barrage")]      private float   m_AresetTimer = 0.0f;
+    [SerializeField, ReadOnly, Foldout("Barrage")]      private float   m_BresetTimer = 0.0f;
+    [SerializeField, ReadOnly, Foldout("Barrage")]      private float   m_XresetTimer = 0.0f;
+    [SerializeField, ReadOnly, Foldout("Barrage")]      private float   m_YresetTimer = 0.0f;
 
     protected virtual void Awake()
     {

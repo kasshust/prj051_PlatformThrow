@@ -6,8 +6,6 @@ using System;
 
 [CustomPropertyDrawer(typeof(TransitionDictionary))]
 [CustomPropertyDrawer(typeof(StringBoolDictionary))]
-[CustomPropertyDrawer(typeof(FieldSpriteDictionary))]
-[CustomPropertyDrawer(typeof(ActDictionary))]
 
 [CustomPropertyDrawer(typeof(GeneralFlagSet))]
 [CustomPropertyDrawer(typeof(GeneralFlagDictionary))]

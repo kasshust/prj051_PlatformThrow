@@ -6,17 +6,11 @@ using Pixeye.Unity;
 
 public abstract class PlatformPlayerBase : PlatformCharacterBase
 {
-    public FactoryManager.PLAYER    m_PlayerEnum;
-
-    [SerializeField,ReadOnly, Foldout("PlatformPlayerBase Param")]
-    public bool                     m_Strengthen;
-
-    [SerializeField, Foldout("PlatformPlayerBase Param")]
-    protected int m_SavedRockOnXDir;
-
-    [SerializeField, Foldout("PlatformPlayerBase Param")]
-    protected float m_SpeedMultiplier = 1.0f;
-
+    [SerializeField, Foldout("PlatformPlayerBase Param")]            public FactoryManager.PLAYER    m_PlayerEnum;
+    [SerializeField, ReadOnly, Foldout("PlatformPlayerBase Param")]  protected int                   m_SavedRockOnXDir;
+    [SerializeField, ReadOnly, Foldout("PlatformPlayerBase Param")]  protected float                 m_SpeedMultiplier = 1.0f;
+    // [SerializeField, ReadOnly, Foldout("PlatformPlayerBase Param")]  public bool m_Strengthen;
+    
     protected override void Update()
     {
         base.Update();

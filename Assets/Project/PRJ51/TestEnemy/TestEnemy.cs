@@ -35,7 +35,7 @@ public class TestEnemy : PlatformEnemyBase
 
     private void Move()
     {
-        m_Controller.Move(m_Velocity * Time.deltaTime * m_MotionSpeed, false);
+        m_Controller.Move(m_Velocity * Time.deltaTime * m_BaseMotionSpeed, false);
     }
 
     public override void ChatchImpactReply(ref PlatformActionManager.ReplyInfo replyInfo)

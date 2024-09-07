@@ -12,19 +12,14 @@ using System.Linq;
 
 public class TestPlayer : PlatformPlayerBase
 {
-    PlayerManager m_PlayerManager;
-    private Controller2D.CollisionInfo pre_collisions;
-    string[] m_NotRigidStates;
+    PlayerManager                      m_PlayerManager;
+    private Controller2D.CollisionInfo m_Pre_collisions;
+    string[]                           m_NotRigidStates;
+    AnimatorStateInfo                  m_AnimatorStateinfo;
+    private PlayerController2D         m_PlayerController2D;
 
-    [SerializeField, Foldout("TestPlayer Param")] float m_MaxVelocity;
-
-    AnimatorStateInfo m_AnimatorStateinfo;
-    private PlayerController2D m_PlayerController2D;
-
-    [SerializeField, Foldout("SE")] private FMODUnity.EventReference m_EnemyStepSE;
-
-
-
+    [SerializeField, ReadOnly, Foldout("TestPlayer Param")] float m_MaxVelocity;
+    [SerializeField, Foldout("SE")]                         private FMODUnity.EventReference m_EnemyStepSE;
 
     protected override void Wake()
     {
@@ -73,19 +68,6 @@ public class TestPlayer : PlatformPlayerBase
     {
         base.RockOn();
     }
-
-    #region debug
-
-    private Vector2 RotateVector2(Vector2 v, float value)
-    {
-        return new Vector2(
-                    v.x * Mathf.Cos(value) - v.y * Mathf.Sin(value),
-                    v.x * Mathf.Sin(value) + v.y * Mathf.Cos(value)
-                );
-    }
-
-    #endregion
-
 
     #region UPDATE
     protected override void Update()
@@ -159,7 +141,7 @@ public class TestPlayer : PlatformPlayerBase
 
     private void UpdateControl()
     {
-        pre_collisions = m_Controller.collisions;
+        m_Pre_collisions = m_Controller.collisions;
         CalculateVelocity();
         HandleWallSliding();
         Move();
@@ -190,12 +172,12 @@ public class TestPlayer : PlatformPlayerBase
         if (m_MaxVelocity == m_Velocity.x) { m_VelocityXSmoothing = 0.0f; }
 
         m_Velocity.x = Mathf.SmoothDamp(m_Velocity.x, m_MaxVelocity, ref m_VelocityXSmoothing, (m_Controller.collisions.below) ? m_AccelerationTimeGrounded : m_AccelerationTimeAirborne);
-        if (m_Gravitable) m_Velocity.y += m_Gravity * Time.deltaTime * m_MotionSpeed;
+        if (m_Gravitable) m_Velocity.y += m_Gravity * Time.deltaTime * m_BaseMotionSpeed;
     }
 
     private void Move()
     {
-        m_Controller.Move(m_Velocity * Time.deltaTime * m_MotionSpeed * m_SpeedMultiplier, m_DirectionalInput, false, m_MotionSpeed);
+        m_Controller.Move(m_Velocity * Time.deltaTime * m_BaseMotionSpeed * m_SpeedMultiplier, m_DirectionalInput, false, m_BaseMotionSpeed);
     }
 
     private void UpdateXDirection()
@@ -204,6 +186,8 @@ public class TestPlayer : PlatformPlayerBase
         AdjustXDirection();
     }
 
+    // アニメーション時判定
+    /*
     [SerializeField, Foldout("PlayerTypeA Param")] LayerMask m_StingerMask;
     private void UpdateAnimatorParam()
     {
@@ -218,6 +202,7 @@ public class TestPlayer : PlatformPlayerBase
             }
         }
     }
+    */
 
     private void UpdateAnimation()
     {
@@ -254,7 +239,7 @@ public class TestPlayer : PlatformPlayerBase
 
     private void UpdateSoundEffect()
     {
-        if (pre_collisions.below == false && m_Controller.collisions.below)
+        if (m_Pre_collisions.below == false && m_Controller.collisions.below)
         {
             // SEManager.Instance.Play(SEPath.SE_LAND);
         }
@@ -528,6 +513,18 @@ public class TestPlayer : PlatformPlayerBase
         {
             Debug.Log("カウンター受ける");
         }
+    }
+
+    #endregion
+
+    #region debug
+
+    private Vector2 RotateVector2(Vector2 v, float value)
+    {
+        return new Vector2(
+                    v.x * Mathf.Cos(value) - v.y * Mathf.Sin(value),
+                    v.x * Mathf.Sin(value) + v.y * Mathf.Cos(value)
+                );
     }
 
     #endregion

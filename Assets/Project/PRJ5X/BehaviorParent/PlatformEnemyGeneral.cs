@@ -5,11 +5,12 @@ using Pixeye.Unity;
 
 public abstract class PlatformEnemyBase : PlatformCharacterBase {
 
-    public FactoryManager.ENEMY m_EnemyEnum;
+    
 
     // [SerializeField, Foldout("PlatformEnemyBase Param")]
     // public CharModelObject m_CharModelObj;
-    [SerializeField, Foldout("PlatformEnemyBase Param")]
+    [SerializeField, Foldout("PlatformEnemyBase Param", true)]
+    public FactoryManager.ENEMY m_EnemyEnum;
     public bool m_ForceDestroy = false;
     [SerializeField,ReadOnly, Foldout("PlatformEnemyBase Param")] float m_TargetVelocity;
 
@@ -100,8 +101,8 @@ public abstract class PlatformEnemyBase : PlatformCharacterBase {
 
         if (m_TargetVelocity == m_Velocity.x) { m_VelocityXSmoothing = 0.0f; }
 
-        m_Velocity.x = Mathf.SmoothDamp(m_Velocity.x, m_TargetVelocity, ref m_VelocityXSmoothing, (m_Controller.collisions.below) ? m_AccelerationTimeGrounded / m_MotionSpeed : m_AccelerationTimeAirborne / m_MotionSpeed);
-        if (m_Gravitable) m_Velocity.y += m_Gravity * Time.deltaTime * m_MotionSpeed;
+        m_Velocity.x = Mathf.SmoothDamp(m_Velocity.x, m_TargetVelocity, ref m_VelocityXSmoothing, (m_Controller.collisions.below) ? m_AccelerationTimeGrounded / m_BaseMotionSpeed : m_AccelerationTimeAirborne / m_BaseMotionSpeed);
+        if (m_Gravitable) m_Velocity.y += m_Gravity * Time.deltaTime * m_BaseMotionSpeed;
     }
 
     protected void NormalizeModelRotation()
