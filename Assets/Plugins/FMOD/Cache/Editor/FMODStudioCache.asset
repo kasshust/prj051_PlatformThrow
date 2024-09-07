@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: ../../../../../gameAssets/fmod/prj051/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638613205062135234
+  lastModified: 638613245331182442
   FileSizes:
   - Name: Desktop
     Value: 1588
@@ -35,7 +35,7 @@ MonoBehaviour:
   Path: ../../../../../gameAssets/fmod/prj051/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638613205062145252
+  lastModified: 638613245331182442
   FileSizes:
   - Name: Desktop
     Value: 958
@@ -55,7 +55,7 @@ MonoBehaviour:
   Path: ../../../../../gameAssets/fmod/prj051/Build/Desktop/SE.bank
   Name: SE
   StudioPath: bank:/SE
-  lastModified: 638613205062175232
+  lastModified: 638613245331212427
   FileSizes:
   - Name: Desktop
     Value: 494
@@ -75,7 +75,7 @@ MonoBehaviour:
   Path: ../../../../../gameAssets/fmod/prj051/Build/Desktop/Misc.bank
   Name: Misc
   StudioPath: bank:/Misc
-  lastModified: 638613205062155233
+  lastModified: 638613245331192424
   FileSizes:
   - Name: Desktop
     Value: 494
@@ -103,5 +103,5 @@ MonoBehaviour:
   - {fileID: -9210490276839016725}
   StringsBanks:
   - {fileID: -8197581484805830739}
-  cacheTime: 638613205062175232
+  cacheTime: 638613245331212427
   cacheVersion: 131591
