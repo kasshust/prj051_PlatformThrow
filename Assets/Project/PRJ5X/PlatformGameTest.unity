@@ -2121,7 +2121,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7745499784173807646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.2406473, y: -1.6716495, z: 2.168767}
+  m_LocalPosition: {x: -3.2406473, y: -0.92, z: 2.168767}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2270,6 +2270,7 @@ MonoBehaviour:
   m_ZeroGravityTime: 0
   m_RockOnTarget: {fileID: 0}
   m_CharAI: {fileID: 0}
+  m_Gravitable: 1
   m_Velocity: {x: 0, y: 0, z: 0}
   m_DirectionalInput: {x: 0, y: 0}
   m_Direction: {x: 0, y: 0}
@@ -2278,7 +2279,6 @@ MonoBehaviour:
   m_XDirection: 1
   m_ControlState: 0
   m_StatusState: 0
-  m_Gravitable: 1
   m_Gravity: 0
   m_MaxJumpVelocity: 0
   m_MinJumpVelocity: 0

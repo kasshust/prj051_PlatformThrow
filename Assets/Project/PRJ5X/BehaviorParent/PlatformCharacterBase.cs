@@ -28,7 +28,9 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
     public Controller2D GetController2D() { return m_Controller; }
     protected ICatchable m_CatchableTarget;
 
-    
+    [SerializeField, Foldout("PlatformCharacterBase Param")]            protected bool                  m_Gravitable = true;
+
+
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected Vector3               m_Velocity;
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected Vector2               m_DirectionalInput;
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  public Vector2                  m_Direction;
@@ -37,7 +39,6 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  public int                      m_XDirection = 1;
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  public ControlState             m_ControlState;
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  public StatusState              m_StatusState;
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected bool                  m_Gravitable = true;
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected float                 m_Gravity;
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected float                 m_MaxJumpVelocity;
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected float                 m_MinJumpVelocity;
@@ -75,10 +76,9 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
         m_Gravity = -(2 * m_MaxJumpHeight) / Mathf.Pow(m_TimeToJumpApex, 2);
         m_MaxJumpVelocity = Mathf.Abs(m_Gravity) * m_TimeToJumpApex;
         m_MinJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(m_Gravity) * m_MinJumpHeight);
-        m_Gravitable = true;
+        // m_Gravitable = true;
 
         m_Velocity.Set(0.0f, 0.0f, 0.0f);
-        m_Gravitable = true;
         InitInputDirection();
 
         return this;

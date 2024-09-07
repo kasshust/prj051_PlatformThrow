@@ -359,8 +359,8 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../../../../gameAssets/fmod/prj060/prj060.fspro
-  sourceBankPath: ../../../../../gameAssets/fmod/prj060/Build
+  sourceProjectPath: ../../../../../gameAssets/fmod/prj051/prj051.fspro
+  sourceBankPath: ../../../../../gameAssets/fmod/prj051/Build
   SourceBankPathUnformatted: 
   BankRefreshCooldown: 1
   ShowBankRefreshWindow: 1

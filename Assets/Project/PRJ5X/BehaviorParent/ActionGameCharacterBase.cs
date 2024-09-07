@@ -11,7 +11,7 @@ public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCha
     protected float  m_MotionBaseSpeed = 1.0f;
 
     [SerializeField, Foldout("ActionGameCharacterBase Param")] protected PlatformStatusObject           m_PlatformStatusObject;
-    [SerializeField, Foldout("ActionGameCharacterBase Param")] protected Animator m_Animator;
+    [SerializeField, Foldout("ActionGameCharacterBase Param")] protected Animator                       m_Animator;
     [SerializeField, Foldout("ActionGameCharacterBase Param")] protected float                          m_TempInvincibleTime = 0.2f;
 
     [SerializeField, Foldout("ActionGameCharacterBase Param"), ReadOnly] public CharacterStatus         m_CharacterStatus;
