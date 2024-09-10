@@ -51,14 +51,13 @@ public class TestBall : CatchableBall
 
     override public void Carried()
     {
-        // ‚±‚±ƒyƒAƒŒƒ“ƒg‚Ìè‚Éİ’è‚µ‚È‚¢‚Æ
-        transform.position = m_Parent.transform.position;
+        transform.position = m_Parent.GetHandPosition() ;
         m_Rigidbody2D.velocity = Vector2.zero;
         m_Rigidbody2D.angularVelocity = 0.0f;
         m_Rigidbody2D.Sleep();
     }
 
-    override public void Catched(GameObject Parent)
+    override public void Catched(ICatcher Parent)
     {
         m_Parent = Parent;
         m_State  = BallState.Carried;

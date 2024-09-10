@@ -253,11 +253,18 @@ public class TestEnemyAI : PlatformEnemyAI
     }
 
     private void Catch() {
-        m_Enemy.Catch(m_Enemy.SearchCatchObject());
+        m_Enemy.Catch(CatchUtility.SearchCatchableObject(transform.position, m_Enemy.m_CatchRadius));
     }
 
     private void Throw() {
-        m_Enemy.Throw(Vector2.right * m_Enemy.m_XDirection);
+
+        if (PlayerManager.Instance.m_Player == null) return;
+        Vector3 pos = PlayerManager.Instance.m_Player.transform.position;
+        Vector2 dir = pos - transform.position;
+
+        m_Enemy.Throw(dir.normalized);
+
+        // m_Enemy.Throw(Vector2.right * m_Enemy.m_XDirection);
     }
 
 
@@ -282,8 +289,13 @@ public class TestEnemyAI : PlatformEnemyAI
         {
             m_Enemy.m_Direction = (Vector2)(m_CharacterBase.m_RockOnTarget.transform.position - m_CharacterBase.transform.position);
             m_Enemy.InputDirection(m_Enemy.m_Direction.normalized);
-            if (GetTargetDistance() < 0.2f) return true;
+            Debug.Log("距離" + GetTargetDistance());
+            if (GetTargetDistance() < 0.8f) {
+                return true;
+                Debug.Log("距離");
+            }
         }
+
         return false;
     }
 

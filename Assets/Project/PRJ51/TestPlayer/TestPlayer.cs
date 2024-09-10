@@ -347,7 +347,7 @@ public class TestPlayer : PlatformPlayerBase
     public void HnadAction(Vector2 moveValue) {
         if (m_CatchableTarget == null)
         {
-            Catch(SearchCatchObject());
+            Catch(CatchUtility.SearchCatchableObject(transform.position, m_CatchRadius));
         }
         else
         {
@@ -355,12 +355,12 @@ public class TestPlayer : PlatformPlayerBase
         }
     }
 
-    protected override void CatchActionSetting(GameObject o)
+    public override void CatchAction(GameObject o)
     {
         o.transform.position = transform.position;
     }
 
-    protected override void ThrowActionSetting(Vector2 moveValue)
+    public override void ThrowAction(Vector2 moveValue)
     {
         m_ThrowProperty.Velocity = moveValue * 10.0f;
         m_ThrowProperty.AttackSet = PlatformActionManager.AttackSet.Player;
@@ -517,6 +517,16 @@ public class TestPlayer : PlatformPlayerBase
 
     #endregion
 
+    #region その他
+    
+    public override Vector3 GetHandPosition()
+    {
+        return transform.position;
+    }
+
+    #endregion
+
+
     #region debug
 
     private Vector2 RotateVector2(Vector2 v, float value)
@@ -526,6 +536,8 @@ public class TestPlayer : PlatformPlayerBase
                     v.x * Mathf.Sin(value) + v.y * Mathf.Cos(value)
                 );
     }
+
+
 
     #endregion
 

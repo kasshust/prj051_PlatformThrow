@@ -5,7 +5,7 @@ using Pixeye.Unity;
 using RedBlueGames.Tools;
 
 [RequireComponent(typeof(Controller2D))]
-public abstract class PlatformCharacterBase : ActionGameCharacterBase
+public abstract class PlatformCharacterBase : ActionGameCharacterBase, ICatcher
 {
     [SerializeField, ReadOnly]
     private PlatformCharacterAI m_CharAI;
@@ -26,6 +26,8 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
 
     protected Controller2D m_Controller;
     public Controller2D GetController2D() { return m_Controller; }
+
+
     protected ICatchable m_CatchableTarget;
 
     [SerializeField, Foldout("PlatformCharacterBase Param")]            protected bool                  m_Gravitable = true;
@@ -45,7 +47,7 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected float                 m_VelocityXSmoothing;
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected Material              m_SharedMaterial;
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected MaterialPropertyBlock m_MaterialPropertyBlock;
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected float                 m_CatchRadius = 0.5f;
+    [SerializeField, Foldout("PlatformCharacterBase Param")]  public    float                 m_CatchRadius = 0.5f;
 
     
     [Foldout("Setup PlatformMoveParam")]        public float    m_MaxJumpHeight = 1;
@@ -162,7 +164,6 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
         m_DirectionalInput = input;
     }
 
-
     // 回転は未実装
     override public void ForceSetAngularVelocity(float velocity)
     {
@@ -254,29 +255,14 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
         else m_Animator.SetBool("MissDirect", false);
     }
 
-    private void UpdateCatchableObject()
+    //　キャッチ ＆　スロー
+    virtual public void UpdateCatchableObject()
     {
         if (m_CatchableTarget != null)
         {
             m_CatchableTarget.Carried();
         }
     }
-
-    //　キャッチ
-    public GameObject SearchCatchObject()
-    {
-        GameObject o = GetTargetClosestObject(
-            transform.position,
-            m_CatchRadius,
-            LayerMask.GetMask("Ball"),
-            true
-        );
-
-        DebugUtility.DrawCircle(transform.position, m_CatchRadius, Color.cyan, 8);
-
-        return o;
-    }
-
     public void Catch(GameObject o) {
 
         if (o == null) return;
@@ -286,33 +272,26 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
         if (!c.IsCatchable()) return;
 
         m_CatchableTarget = c;
-        m_CatchableTarget.Catched(gameObject);
+        m_CatchableTarget.Catched(this);
 
-        CatchActionSetting(o);
-
+        CatchAction(o);
     }
 
-    virtual protected void CatchActionSetting(GameObject o) {
-        o.transform.position = transform.position;
-    }  
-
-    // スロー
     protected ThrowProperty m_ThrowProperty;
     public void Throw(Vector2 MoveValue)
     {
         if (m_CatchableTarget == null) return;
 
-        ThrowActionSetting(MoveValue);
+        ThrowAction(MoveValue);
         m_CatchableTarget.Throwed(ref m_ThrowProperty);
         m_CatchableTarget = null;
         
     }
 
-    virtual protected void ThrowActionSetting(Vector2 MoveValue) {
-        m_ThrowProperty.Velocity = MoveValue * 10.0f;
-        m_ThrowProperty.AttackSet = PlatformActionManager.AttackSet.All;
+    public abstract Vector3 GetHandPosition();
+    public abstract void CatchAction(GameObject o);
+    public abstract void ThrowAction(Vector2 MoveValue);
 
-    }
 
     protected void UpdateCollisionWithFloorCeil()
     {
@@ -380,4 +359,6 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase
 
         }
     }
+
+    
 }

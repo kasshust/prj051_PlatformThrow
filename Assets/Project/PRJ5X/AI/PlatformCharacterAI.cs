@@ -8,7 +8,7 @@ public abstract class PlatformCharacterAI : ActionGameCharacterAI
     protected PlatformCharacterBase m_CharacterBase;
 
     [SerializeField, ReadOnly, Foldout("PlatformCharacterAI Param")]
-    protected Vector3 m_RockOnVec;
+    protected Vector2 m_RockOnVec;
 
     protected float GetTargetDistance() {
         if (m_CharacterBase.m_RockOnTarget == null) return float.NaN;

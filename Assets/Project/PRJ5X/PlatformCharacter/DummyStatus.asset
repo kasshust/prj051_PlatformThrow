@@ -15,12 +15,13 @@ MonoBehaviour:
   m_PlatformStatus:
     IsDead: 0
     IsInvincible: 0
+    IsTempInvincible: 0
     Hp:
-      Value: 0
-      MaxValue: 0
+      Value: 100
+      MaxValue: 100
     FlirtEndure:
-      Value: 0
-      MaxValue: 0
+      Value: 100
+      MaxValue: 100
     SuperArmer: 0
     Strengthen:
       Value: 0

@@ -10,7 +10,7 @@ public struct ThrowProperty
 
 public interface ICatchable
 {
-    public void Catched(GameObject Parent);
+    public void Catched(ICatcher Parent);
     public void Throwed(ref ThrowProperty throwProperty);
     public void Carried();
     public bool IsCatchable();

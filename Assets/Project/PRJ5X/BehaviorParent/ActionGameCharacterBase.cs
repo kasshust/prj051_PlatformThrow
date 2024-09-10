@@ -24,7 +24,6 @@ public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCha
     [SerializeField, Foldout("ActionGameCharacterBase Param"), ReadOnly] protected float                m_ZeroGravityTime = 0.0f;
     [SerializeField, Foldout("ActionGameCharacterBase Param"), ReadOnly] public GameObject              m_RockOnTarget;
     
-    
     protected override void Wake()
     {
         m_MainCamera = Camera.main;

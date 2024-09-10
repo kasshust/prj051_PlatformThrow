@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Project/Common/Scene/DebugScene/DebugScene.unity
     guid: 46680127fe7560849a086ab128a19793
   - enabled: 1
-    path: Assets/Project/PRJ5X/PlatformGameTest.unity
+    path: Assets/Project/PRJ51/PlatformGameTest.unity
     guid: f62afd7699b28354688267acc1ccf830
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 812e3e3834e09d94cbb198773a8912ca,

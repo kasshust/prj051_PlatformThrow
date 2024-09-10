@@ -127,6 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlatformStatusObject: {fileID: 11400000, guid: 2d34e924dae5e4e49b1401fd9a3ae70f,
     type: 2}
+  m_Animator: {fileID: 8619531619236208570}
+  m_TempInvincibleTime: 0.2
   m_CharacterStatus:
     IsDead: 0
     IsInvincible: 0
@@ -143,17 +145,16 @@ MonoBehaviour:
       MaxValue: 0
     IsGuard: 0
     Money: 0
-  m_TempInvincibleTime: 0.2
   m_CurrentTempInvincibleTime: 0
-  m_Animator: {fileID: 8619531619236208570}
-  m_MotionSpeed: 1
-  m_SlowMotion: 0
   m_SlowMotionGain: 0.02
+  m_BaseMotionSpeed: 1
+  m_SlowMotion: 0
   m_SlowMotionTime: 0
   m_ZeroGravity: 0
   m_ZeroGravityTime: 0
   m_RockOnTarget: {fileID: 0}
   m_CharAI: {fileID: 0}
+  m_Gravitable: 1
   m_Velocity: {x: 0, y: 0, z: 0}
   m_DirectionalInput: {x: 0, y: 0}
   m_Direction: {x: 0, y: 0}
@@ -162,7 +163,6 @@ MonoBehaviour:
   m_XDirection: 1
   m_ControlState: 0
   m_StatusState: 0
-  m_Gravitable: 1
   m_Gravity: 0
   m_MaxJumpVelocity: 0
   m_MinJumpVelocity: 0
@@ -180,11 +180,7 @@ MonoBehaviour:
   m_WwallLeap: {x: 5, y: 5}
   m_WallSlideSpeedMax: 3
   m_WallStickTime: 0.02
-  m_TimeToWallUnstick: 0
-  m_WallSliding: 0
-  m_WallDirX: 0
   m_PlayerEnum: 0
-  m_Strengthen: 0
   m_SavedRockOnXDir: 0
   m_SpeedMultiplier: 1
   m_MaxVelocity: 0
@@ -195,9 +191,6 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
-  m_StingerMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!50 &8619531618049956386
 Rigidbody2D:
   serializedVersion: 4
@@ -257,7 +250,7 @@ GameObject:
   - component: {fileID: 8619531619236208572}
   - component: {fileID: 8619531619236208571}
   - component: {fileID: 8619531619236208570}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,8 +265,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8619531619236208573}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0005, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.030855032, z: 0.02}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8619531618049956391}
@@ -320,8 +313,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 739809655c2f8dd42b0a0cd0987ad8d6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 361f651f5303ce740924dbbb7a20adaf, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -341,7 +334,7 @@ Animator:
   m_GameObject: {fileID: 8619531619236208573}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6595ed2482a4cd441b992c1ad145592e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 228169092bfd31d4d9de91227ebb42c1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

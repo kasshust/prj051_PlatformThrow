@@ -104,14 +104,19 @@ public class TestEnemy : PlatformEnemyBase
         return false;
     }
 
-    protected override void CatchActionSetting(GameObject o)
+    public override void CatchAction(GameObject o)
     {
         o.transform.position = transform.position;
     }
 
-    protected override void ThrowActionSetting(Vector2 moveValue)
+    public override void ThrowAction(Vector2 moveValue)
     {
         m_ThrowProperty.Velocity = moveValue * 10.0f;
         m_ThrowProperty.AttackSet = PlatformActionManager.AttackSet.EnemyA;
+    }
+
+    public override Vector3 GetHandPosition()
+    {
+        return transform.position;
     }
 }

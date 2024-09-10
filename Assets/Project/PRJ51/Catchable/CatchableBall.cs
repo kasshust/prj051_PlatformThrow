@@ -13,7 +13,7 @@ public enum BallState
 
 public abstract class CatchableBall : MonoBehaviour, ICatchable
 {
-    protected GameObject m_Parent;
+    protected ICatcher m_Parent;
 
     [SerializeField] public BallState m_State = BallState.Default;
     [SerializeField] protected int m_Level = 0;
@@ -22,7 +22,7 @@ public abstract class CatchableBall : MonoBehaviour, ICatchable
     protected PlatformActionManager.ReplyInfo  m_ReplyInfo;
 
     public abstract void Carried();
-    public abstract void Catched(GameObject Parent);
+    public abstract void Catched(ICatcher Parent);
     public abstract bool IsCatchable();
     public abstract void Throwed(ref ThrowProperty throwProperty);
 }

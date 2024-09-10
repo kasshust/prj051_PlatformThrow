@@ -44,8 +44,10 @@ public class PlayerManager : SingletonMonoBehaviourFast<PlayerManager>
         if (m_Player == null)
         {
             // m_Player = FactoryManager.Instance.GetObject<PlatformPlayerBase>(ePlayer, playerSponeTransform.position, Quaternion.identity);
-            // m_Input = m_Player.gameObject.GetComponent<PlatformPlayerInput>();
-            // camera.SetCharacterBase(m_Player);
+            // 普通に生成してしまう
+            m_Player = Instantiate(m_PlayerPrefab, playerSponeTransform.position, Quaternion.identity);
+            m_Input = m_Player.gameObject.GetComponent<PlatformPlayerInput>();
+            camera.SetCharacterBase(m_Player);
             return m_Player;
         }
         else {
