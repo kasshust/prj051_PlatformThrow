@@ -23,7 +23,12 @@ public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCha
     [SerializeField, Foldout("ActionGameCharacterBase Param"), ReadOnly] protected bool                 m_ZeroGravity = false;
     [SerializeField, Foldout("ActionGameCharacterBase Param"), ReadOnly] protected float                m_ZeroGravityTime = 0.0f;
     [SerializeField, Foldout("ActionGameCharacterBase Param"), ReadOnly] public GameObject              m_RockOnTarget;
-    
+
+    [SerializeField, ReadOnly, Foldout("ActionGameCharacterBase Param")] protected Vector3 m_Velocity;
+    [SerializeField, ReadOnly, Foldout("ActionGameCharacterBase Param")] public Vector2    m_Direction;
+    [SerializeField, ReadOnly, Foldout("ActionGameCharacterBase Param")] public Vector2    m_DamageDirection;
+
+
     protected override void Wake()
     {
         m_MainCamera = Camera.main;
@@ -439,5 +444,6 @@ public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCha
 
     virtual public void  AddVelocity(Vector2 velocity) { }
 
+    public abstract void Damage(ref PlatformActionManager.AttackInfo attackInfo, RaycastHit2D hit, GameObject g = null);
     abstract public void ChatchImpactReply(ref PlatformActionManager.ReplyInfo replyInfo);
 }

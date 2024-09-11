@@ -31,12 +31,8 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase, ICatcher
     protected ICatchable m_CatchableTarget;
 
     [SerializeField, Foldout("PlatformCharacterBase Param")]            protected bool                  m_Gravitable = true;
-
-
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected Vector3               m_Velocity;
+    
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected Vector2               m_DirectionalInput;
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  public Vector2                  m_Direction;
-    [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  public Vector2                  m_DamageDirection;
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  public Vector2                  m_GuardDirection;
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  public int                      m_XDirection = 1;
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  public ControlState             m_ControlState;
@@ -47,7 +43,7 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase, ICatcher
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected float                 m_VelocityXSmoothing;
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected Material              m_SharedMaterial;
     [SerializeField, ReadOnly, Foldout("PlatformCharacterBase Param")]  protected MaterialPropertyBlock m_MaterialPropertyBlock;
-    [SerializeField, Foldout("PlatformCharacterBase Param")]  public    float                 m_CatchRadius = 0.5f;
+    [SerializeField, Foldout("PlatformCharacterBase Param")]            public    float                 m_CatchRadius = 0.5f;
 
     
     [Foldout("Setup PlatformMoveParam")]        public float    m_MaxJumpHeight = 1;
@@ -66,7 +62,6 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase, ICatcher
     [Foldout("Setup PlatformMoveParam")]        protected int   m_WallDirX;
 
 
-    public abstract void Damage(ref PlatformActionManager.AttackInfo attackInfo, RaycastHit2D hit, GameObject g = null);
 
     public override ActionGameCharacterBase CreateInit()
     {

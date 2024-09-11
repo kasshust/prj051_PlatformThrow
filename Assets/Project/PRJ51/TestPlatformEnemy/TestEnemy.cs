@@ -44,6 +44,7 @@ public class TestEnemy : PlatformEnemyBase
 
     public override void Damage(ref PlatformActionManager.AttackInfo attackInfo, RaycastHit2D hit, GameObject g = null)
     {
+        ForceSetVelocity(attackInfo.Direction * attackInfo.ImpactValue);
     }
 
     public override void Dead()

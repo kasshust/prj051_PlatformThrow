@@ -18,7 +18,7 @@ public class TestEnemyAI : PlatformEnemyAI
         switch (m_AIType)
         {
             case AIType.Type00:
-                EscapeChaseTree();
+                ChaseBallTree();
                 break;
             case AIType.Type01:
                 DefaultTree();
@@ -210,7 +210,7 @@ public class TestEnemyAI : PlatformEnemyAI
         .Build();
     }
 
-    protected void EscapeChaseTree()
+    protected void ChaseBallTree()
     {
         m_BehaviorTree = new BehaviorTreeBuilder(gameObject)
         .RepeatForever()
@@ -289,10 +289,8 @@ public class TestEnemyAI : PlatformEnemyAI
         {
             m_Enemy.m_Direction = (Vector2)(m_CharacterBase.m_RockOnTarget.transform.position - m_CharacterBase.transform.position);
             m_Enemy.InputDirection(m_Enemy.m_Direction.normalized);
-            Debug.Log("距離" + GetTargetDistance());
             if (GetTargetDistance() < 0.8f) {
                 return true;
-                Debug.Log("距離");
             }
         }
 

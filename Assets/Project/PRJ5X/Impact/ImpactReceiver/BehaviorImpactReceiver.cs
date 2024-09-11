@@ -6,7 +6,7 @@ using System;
 public class BehaviorImpactReceiver : MonoBehaviour
 {
     [SerializeField]
-    private PlatformStatusController m_Status;
+    private StatusController m_Status;
 
     [SerializeField]
     PlatformActionManager.AttackSet m_AttackSet;
@@ -17,7 +17,11 @@ public class BehaviorImpactReceiver : MonoBehaviour
 
     public void Awake()
     {
-        if(m_Status == null)Debug.LogWarning("Status is Null");
+        if (m_Status == null)
+        {
+            m_Status = GetComponent<StatusController>();
+            Debug.LogWarning("Status is Null");
+        }
         m_ImpactID = new Queue<Guid>();
     }
 

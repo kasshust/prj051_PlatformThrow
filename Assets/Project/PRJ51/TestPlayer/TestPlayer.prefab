@@ -153,12 +153,12 @@ MonoBehaviour:
   m_ZeroGravity: 0
   m_ZeroGravityTime: 0
   m_RockOnTarget: {fileID: 0}
-  m_CharAI: {fileID: 0}
-  m_Gravitable: 1
   m_Velocity: {x: 0, y: 0, z: 0}
-  m_DirectionalInput: {x: 0, y: 0}
   m_Direction: {x: 0, y: 0}
   m_DamageDirection: {x: 0, y: 0}
+  m_CharAI: {fileID: 0}
+  m_Gravitable: 1
+  m_DirectionalInput: {x: 0, y: 0}
   m_GuardDirection: {x: 0, y: 0}
   m_XDirection: 1
   m_ControlState: 0
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fbd77cb2d51213468b77cfd7d912942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CharacterBase: {fileID: 8619531618049956388}
+  m_GameCharacter: {fileID: 8619531618049956388}
 --- !u!1 &8619531619236208573
 GameObject:
   m_ObjectHideFlags: 0

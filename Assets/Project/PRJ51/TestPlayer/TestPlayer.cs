@@ -492,7 +492,9 @@ public class TestPlayer : PlatformPlayerBase
     public override void Damage(ref PlatformActionManager.AttackInfo attackInfo, RaycastHit2D hit, GameObject g = null)
     {
         // CheckDamageDirection(hit, g);
+
         m_DamageDirection = attackInfo.Direction.normalized;
+        ForceSetVelocity(attackInfo.Direction * attackInfo.ImpactValue);
 
         // VFXController.Instance.StartCameraShake(0.10f, 0.1f);
         // VFXController.Instance.StartRadBlur(0.5f, 0.2f, Vector2.zero);

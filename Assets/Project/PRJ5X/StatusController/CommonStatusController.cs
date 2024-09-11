@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CommonStatusController : PlatformStatusController
+public class CommonStatusController : StatusController
 {
     protected override void Awake()
     {
@@ -12,14 +12,13 @@ public class CommonStatusController : PlatformStatusController
     public override void ReceiveImpact(ref PlatformActionManager.AttackInfo attackInfo, RaycastHit2D hit, ref PlatformActionManager.ReplyInfo replyInfo, BehaviorImpactSender sender, GameObject g = null)
     {
         ReceiveDamage(ref attackInfo, hit, ref replyInfo, sender, g);
-        m_CharacterBase.ForceSetVelocity(attackInfo.Direction * attackInfo.ImpactValue);
     }
 
     public override void ReceiveDamage(ref PlatformActionManager.AttackInfo attackInfo, RaycastHit2D hit, ref PlatformActionManager.ReplyInfo replyInfo, BehaviorImpactSender sender, GameObject g = null)
     {
-        m_CharacterBase.SetTempInvincible(true);
-        m_CharacterBase.CalHp(-attackInfo.DamageValue);
-        m_CharacterBase.CalFlirtEndure(-attackInfo.FlirtEndure);
-        m_CharacterBase.Damage(ref attackInfo, hit);
+        m_GameCharacter.SetTempInvincible(true);
+        m_GameCharacter.CalHp(-attackInfo.DamageValue);
+        m_GameCharacter.CalFlirtEndure(-attackInfo.FlirtEndure);
+        m_GameCharacter.Damage(ref attackInfo, hit);
     }
 }

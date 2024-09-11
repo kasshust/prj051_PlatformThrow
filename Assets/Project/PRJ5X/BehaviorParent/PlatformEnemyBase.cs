@@ -5,8 +5,6 @@ using Pixeye.Unity;
 
 public abstract class PlatformEnemyBase : PlatformCharacterBase {
 
-    
-
     // [SerializeField, Foldout("PlatformEnemyBase Param")]
     // public CharModelObject m_CharModelObj;
     [SerializeField, Foldout("PlatformEnemyBase Param", true)]
