@@ -54,10 +54,16 @@ public class BehaviorImpactSender : ActionGameUtility
         TempReceiver = hit.collider.gameObject.GetComponent<BehaviorImpactReceiver>();
         if (TempReceiver != null)
         {
+            // 動的に方向を決定する場合
+            if (attackInfo.IsRadiationDirection) {
+                attackInfo.Direction = hit.transform.position - transform.position;
+                attackInfo.Direction = attackInfo.Direction.normalized;
+            }
+
             bool bhit = TempReceiver.ReceiveImpactGetReply(ref attackInfo, hit, this, ref m_ReplyInfo, hit.collider.gameObject);
             if (bhit)
             {
-                m_CharacterBase.ChatchImpactReply(ref m_ReplyInfo);
+                if(m_CharacterBase != null ) m_CharacterBase.ChatchImpactReply(ref m_ReplyInfo);
                 FireHitEffects(ref attackInfo, ref baseInfo, hit);
             }
         }
@@ -196,8 +202,11 @@ public class BehaviorImpactSender : ActionGameUtility
                 break;
         }
 
-        Gizmos.color = Color.blue;
-        DrawRay(transform.position, m_AttackInfo.Direction.normalized * m_AttackInfo.ImpactValue);
+        if (!m_AttackInfo.IsRadiationDirection)
+        {
+            Gizmos.color = Color.blue;
+            DrawRay(transform.position, m_AttackInfo.Direction.normalized * m_AttackInfo.ImpactValue);
+        }
         
     }
 

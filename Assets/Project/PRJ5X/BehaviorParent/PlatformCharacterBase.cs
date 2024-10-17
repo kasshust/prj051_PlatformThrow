@@ -258,18 +258,20 @@ public abstract class PlatformCharacterBase : ActionGameCharacterBase, ICatcher
             m_CatchableTarget.Carried();
         }
     }
-    public void Catch(GameObject o) {
+    public bool Catch(GameObject o) {
 
-        if (o == null) return;
+        if (o == null) return false;
 
         ICatchable c = o.GetComponent<ICatchable>();
-        if (c == null) return;
-        if (!c.IsCatchable()) return;
+        if (c == null) return false;
+        if (!c.IsCatchable()) return false;
 
         m_CatchableTarget = c;
         m_CatchableTarget.Catched(this);
 
         CatchAction(o);
+
+        return true;
     }
 
     protected ThrowProperty m_ThrowProperty;

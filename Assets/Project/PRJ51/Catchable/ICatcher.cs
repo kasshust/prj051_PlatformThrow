@@ -7,7 +7,7 @@ using Pixeye.Unity;
 
 public interface ICatcher {
 
-    public void Catch(GameObject o);
+    public bool Catch(GameObject o);
     public void Throw(Vector2 MoveValue);
     public void CatchAction(GameObject o);
     public void ThrowAction(Vector2 MoveValue);

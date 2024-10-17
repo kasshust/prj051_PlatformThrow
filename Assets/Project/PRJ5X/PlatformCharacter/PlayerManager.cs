@@ -22,9 +22,6 @@ public class PlayerManager : SingletonMonoBehaviourFast<PlayerManager>
     [SerializeField]
     protected PlatformStatusObject m_PlatformStatusObject;
 
-    [SerializeField, ReadOnly]
-    public CharacterStatus m_PlayerStatus;
-
     [SerializeField, Foldout("SE")] private FMODUnity.EventReference m_GetMoneySE;
 
     protected override void Awake()
@@ -44,10 +41,15 @@ public class PlayerManager : SingletonMonoBehaviourFast<PlayerManager>
         if (m_Player == null)
         {
             // m_Player = FactoryManager.Instance.GetObject<PlatformPlayerBase>(ePlayer, playerSponeTransform.position, Quaternion.identity);
-            // 普通に生成してしまう
+            
+            // プールを使わないで生成
             m_Player = Instantiate(m_PlayerPrefab, playerSponeTransform.position, Quaternion.identity);
             m_Input = m_Player.gameObject.GetComponent<PlatformPlayerInput>();
             camera.SetCharacterBase(m_Player);
+
+            // ステータス上書き
+            m_Player.m_CharacterStatus = m_PlatformStatusObject.m_PlatformStatus;
+
             return m_Player;
         }
         else {
@@ -58,7 +60,6 @@ public class PlayerManager : SingletonMonoBehaviourFast<PlayerManager>
 
     protected void Start()
     {
-        InitStatus();
     }
 
     protected void Update()
@@ -67,28 +68,20 @@ public class PlayerManager : SingletonMonoBehaviourFast<PlayerManager>
             if (m_Operational) m_Input.Control();
             else m_Player.InitInputDirection();
         }
+
+        if (m_Player != null) {
+            if (IsDead())
+            {
+                Debug.Log("プレイヤーが死んでいます");
+                SetOperational(false);
+            }
+        }
     }
 
     public void InitStatus()
     {
-        m_PlayerStatus = m_PlatformStatusObject.m_PlatformStatus;
         SetOperational(true);
         Debug.Log("Playerの情報を初期化しました");
-    }
-
-    public void CalHp(float value)
-    {
-        m_PlayerStatus.CalHp(value);
-    }
-
-    public void CalHpMax(float value)
-    {
-        m_PlayerStatus.CalMaxHp(value);
-    }
-
-    public void CalFlirtEndure(float value)
-    {
-        m_PlayerStatus.CalFlirtEndure(value);
     }
 
     public void SetOperational(bool b) {
@@ -96,7 +89,7 @@ public class PlayerManager : SingletonMonoBehaviourFast<PlayerManager>
     }
 
     public bool IsDead() {
-        if (m_PlayerStatus.Hp.Value <= 0.0f) return true;
+        if (m_Player.m_CharacterStatus.Hp.Value <= 0.0f) return true;
         else return false;
     }
 

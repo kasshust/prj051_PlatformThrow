@@ -29,6 +29,7 @@ public class PlatformActionManager : SingletonMonoBehaviourFast<PlatformActionMa
         public AttackType                           AttackType;
         [Range(0,100)]      public float            DamageValue;
         [Range(0, 100)]     public float            FlirtEndure;
+        public bool                                 IsRadiationDirection;   //中心から放射ベクトルに方向を決定する
         public Vector2                              Direction;
         [Range(-100, 100)]  public float            ImpactValue;
         public bool                                 OverriteVelocity;
@@ -70,9 +71,9 @@ public class PlatformActionManager : SingletonMonoBehaviourFast<PlatformActionMa
         public bool             UntilMotionEnd;
 
         public Vector3          LoacalPosition;
-        
-        [ReadOnly] 
-        public Transform        ParentTransform;
+        public bool             isCreateInParentTransform;
+
+        [ReadOnly] public Transform        ParentTransform;
 
         public Quaternion       Rotation;
     }
@@ -136,8 +137,16 @@ public class PlatformActionManager : SingletonMonoBehaviourFast<PlatformActionMa
         {
             if (m_UsePool) g = TryCreateFromPool();
             if (g == null) g = m_FactoryManager.Create(m_ImapctSenderPrefab);
-            g.transform.parent = baseInfo.ParentTransform;
-            g.transform.localPosition = baseInfo.LoacalPosition;
+            
+            // 親トランスフォームの下に生成するか否か
+            if (baseInfo.isCreateInParentTransform)
+            {
+                g.transform.parent = baseInfo.ParentTransform;
+                g.transform.localPosition = baseInfo.LoacalPosition;
+            }
+            else {
+                g.transform.position = baseInfo.ParentTransform.position + baseInfo.LoacalPosition;
+            }
         }
 
         return g;
@@ -160,5 +169,18 @@ public class PlatformActionManager : SingletonMonoBehaviourFast<PlatformActionMa
 
         g.InitAllParam(attackinfo, baseInfo, null, animator);
     }
-    
+
+
+    // 簡易版Sender
+    PlatformActionManager.AttackInfo m_TempAttackInfo;
+    PlatformActionManager.BaseSenderInfo m_TempBaseInfo;
+    public void CreateImpactSender(ImpactSenderDataSet data, Transform Parent)
+    {
+        m_TempAttackInfo = data.AttackInfo;
+        m_TempBaseInfo = data.BaseSenderInfo;
+        m_TempBaseInfo.ParentTransform = Parent;
+
+        CreateImpactSender(ref m_TempAttackInfo,ref m_TempBaseInfo);
+    }
+
 }

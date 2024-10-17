@@ -18,8 +18,12 @@ public class TestPlayer : PlatformPlayerBase
     AnimatorStateInfo                  m_AnimatorStateinfo;
     private PlayerController2D         m_PlayerController2D;
 
-    [SerializeField, ReadOnly, Foldout("TestPlayer Param")] float m_MaxVelocity;
+    [SerializeField, ReadOnly, Foldout("TestPlayer Param")] float                            m_MaxVelocity;
+    [SerializeField, Foldout("TestPlayer Param")] float                                      m_ThrowVelocity = 20.0f;
     [SerializeField, Foldout("SE")]                         private FMODUnity.EventReference m_EnemyStepSE;
+    [SerializeField, Foldout("SE")]                         private FMODUnity.EventReference m_ThrowSound;
+    [SerializeField, Foldout("SE")]                         private FMODUnity.EventReference m_CatchSound;
+    [SerializeField, Foldout("SE")]                         private FMODUnity.EventReference m_CatchSuccessSound;
 
     protected override void Wake()
     {
@@ -347,10 +351,14 @@ public class TestPlayer : PlatformPlayerBase
     public void HnadAction(Vector2 moveValue) {
         if (m_CatchableTarget == null)
         {
-            Catch(CatchUtility.SearchCatchableObject(transform.position, m_CatchRadius));
+            FMODUnity.RuntimeManager.PlayOneShot(m_CatchSound, transform.position);
+            if (Catch(CatchUtility.SearchCatchableObject(transform.position, m_CatchRadius))) {
+                FMODUnity.RuntimeManager.PlayOneShot(m_CatchSuccessSound, transform.position);
+            };
         }
         else
         {
+            FMODUnity.RuntimeManager.PlayOneShot(m_ThrowSound, transform.position);
             Throw(moveValue);
         }
     }
@@ -362,7 +370,7 @@ public class TestPlayer : PlatformPlayerBase
 
     public override void ThrowAction(Vector2 moveValue)
     {
-        m_ThrowProperty.Velocity = moveValue * 10.0f;
+        m_ThrowProperty.Velocity = moveValue * m_ThrowVelocity;
         m_ThrowProperty.AttackSet = PlatformActionManager.AttackSet.Player;
     }
 

@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a9a0c56c748614fbbf9a284258354d, type: 3}
+  m_Name: Impact00
+  m_EditorClassIdentifier: 
+  IsChild: 0
+  ParentNum: 0
+  AdjustDirXDirection: 0
+  AdjustPosXDirection: 0
+  attackinfo:
+    AttackSet: 0
+    AttackType: 0
+    DamageValue: 1
+    FlirtEndure: 0
+    IsRadiationDirection: 1
+    Direction: {x: 1, y: 0}
+    ImpactValue: 12
+    OverriteVelocity: 1
+    ZeroGravity: 0
+    ZeroGravityTime: 0
+    HitContinue: 0
+    CreateHitEffect: 0
+    HitEffect: 0
+    HitSound:
+      Guid:
+        Data1: -1083014251
+        Data2: 1270251149
+        Data3: -846438521
+        Data4: 256369529
+      Path: event:/Hit
+    HitStop: 0
+    HitStopTime: 0
+    RunHitPostEffect: 0
+    PostDuration: 0
+    PostMagnitude: 0
+  basesenderInfo:
+    Form: 0
+    CircleSenderInfo:
+      Radius: 2
+    RectSenderInfo:
+      Width: 0
+      Height: 0
+      Angle: 0
+    Time: 0.1
+    UntilMotionEnd: 0
+    LoacalPosition: {x: 0, y: 0, z: 0}
+    isCreateInParentTransform: 0
+    ParentTransform: {fileID: 0}
+    Rotation: {x: 0, y: 0, z: 0, w: 0}

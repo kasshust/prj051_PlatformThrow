@@ -184,6 +184,7 @@ MonoBehaviour:
   m_SavedRockOnXDir: 0
   m_SpeedMultiplier: 1
   m_MaxVelocity: 0
+  m_ThrowVelocity: 20
   m_EnemyStepSE:
     Guid:
       Data1: 0
@@ -191,6 +192,27 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  m_ThrowSound:
+    Guid:
+      Data1: 625576023
+      Data2: 1303217030
+      Data3: 1785195682
+      Data4: -1720852261
+    Path: event:/Throw
+  m_CatchSound:
+    Guid:
+      Data1: 1245854287
+      Data2: 1195508442
+      Data3: 870142879
+      Data4: -143246583
+    Path: event:/Catch
+  m_CatchSuccessSound:
+    Guid:
+      Data1: 1029917004
+      Data2: 1157895647
+      Data3: -1461949533
+      Data4: 1107694962
+    Path: event:/CatchSuccess
 --- !u!50 &8619531618049956386
 Rigidbody2D:
   serializedVersion: 4

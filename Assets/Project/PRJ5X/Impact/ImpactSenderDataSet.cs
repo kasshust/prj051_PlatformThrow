@@ -9,7 +9,7 @@ public class ImpactSenderDataSet : ScriptableObject
     [SerializeField, Range(0, 20)] public int ParentNum = 0;
     [SerializeField] public bool AdjustDirXDirection               = true;
     [SerializeField] public bool AdjustPosXDirection               = true;
-    [SerializeField] private PlatformActionManager.AttackInfo attackinfo;
+    [SerializeField] private PlatformActionManager.AttackInfo     attackinfo;
     [SerializeField] private PlatformActionManager.BaseSenderInfo basesenderInfo;
 
     public PlatformActionManager.AttackInfo         AttackInfo { get => attackinfo; set => attackinfo = value; }

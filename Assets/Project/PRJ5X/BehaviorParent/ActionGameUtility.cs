@@ -8,7 +8,8 @@ public abstract class ActionGameUtility : ActionGameBehavior<ActionGameUtility> 
 
     override public void ReleaseObject()
     {
-        m_FactoryManager.ReleaseObject(m_UtilityEnum, this.gameObject);
+        // m_FactoryManager.ReleaseObject(m_UtilityEnum, this.gameObject);
+        Destroy(this.gameObject);
     }
 
 
