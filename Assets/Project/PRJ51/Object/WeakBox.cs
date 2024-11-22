@@ -9,6 +9,8 @@ public class WeakBox : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         CatchableBall ball = collision.gameObject.GetComponent<CatchableBall>();
+        if (ball == null) return;
+
 
         if (ball.m_State == BallState.Throwed || ball.m_State == BallState.Bound) {
             FMODUnity.RuntimeManager.PlayOneShot(m_BallHitSound, transform.position);

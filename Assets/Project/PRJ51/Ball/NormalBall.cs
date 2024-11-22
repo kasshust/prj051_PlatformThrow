@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RedBlueGames.Tools;
+using System;
 
 public abstract class NormalBall : CatchableBall
 {
@@ -14,6 +15,8 @@ public abstract class NormalBall : CatchableBall
     protected abstract void HitWall(Collision2D collision);
     protected abstract void HitGround(Collision2D collision);
     protected virtual void  Step() { }
+
+    public event Action CatchedAction;
 
     private void Update()
     {
@@ -50,10 +53,11 @@ public abstract class NormalBall : CatchableBall
         m_Rigidbody2D.Sleep();
     }
 
-    override public void Catched(ICatcher Parent)
+    override public void Catched(ICatcher parent)
     {
-        m_Parent = Parent;
+        m_Parent = parent;
         m_State = BallState.Carried;
+        if (CatchedAction != null) CatchedAction.Invoke();
     }
 
     override public void Throwed(ref ThrowProperty throwProperty)

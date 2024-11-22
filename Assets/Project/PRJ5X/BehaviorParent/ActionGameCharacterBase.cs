@@ -92,6 +92,11 @@ public abstract class ActionGameCharacterBase : ActionGameBehavior<ActionGameCha
         }
     }
 
+    public void ForceDead() {
+        m_CharacterStatus.IsDead = true;
+        Dead();
+    }
+
     private void CheckTempInvincible()
     {
         if (m_CharacterStatus.IsTempInvincible)

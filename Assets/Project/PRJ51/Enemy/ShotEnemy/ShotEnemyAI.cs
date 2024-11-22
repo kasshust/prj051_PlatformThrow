@@ -4,7 +4,7 @@ using UnityEngine;
 using Pixeye.Unity;
 using CleverCrow.Fluid.BTs.Tasks;
 using CleverCrow.Fluid.BTs.Trees;
-public class CommonEnemyAI : EnemyAI
+public class ShotEnemyAI : EnemyAI
 {
 
     public enum AIType
@@ -21,12 +21,14 @@ public class CommonEnemyAI : EnemyAI
         Type09,
     }
 
-    [SerializeField, Foldout("CommonEnemyAI Param")] protected AIType m_AIType;
-    EnemyBase m_Enemy;
+    [SerializeField, Foldout("ShotEnemyAI Param")] protected AIType m_AIType;
+    ShotEnemy m_Enemy;
+    
+
 
     protected override void Init()
     {
-        if (m_Enemy == null) m_Enemy = GetComponent<EnemyBase>();
+        if (m_Enemy == null) m_Enemy = GetComponent<ShotEnemy>();
         BuildTree();
     }
 
@@ -37,40 +39,38 @@ public class CommonEnemyAI : EnemyAI
         switch (m_AIType)
         {
             case AIType.Type00:
-                ChasePlayerTree();
+                ShotCycleTree();
                 break;
         }
 
     }
 
-    protected void ChasePlayerTree()
+    protected void ShotCycleTree()
     {
         m_BehaviorTree = new BehaviorTreeBuilder(gameObject)
         .RepeatForever()
             .Sequence()
-                .Do("ChasePlayer", () => {
-                    if (ChasePlayer()) return TaskStatus.Success;
+                .Do("ShotCycle", () => {
+                    if (Shot()) return TaskStatus.Success;
                     else return TaskStatus.Continue;
                 })
-                .WaitTime(0.05f)
+                .WaitTime(1.0f)
             .End()
         .End()
         .Build();
     }
 
-
     Vector2 m_TempVector = new Vector2();
-    private bool ChasePlayer()
-    {
+    protected bool Shot() {
         if (PlayerManager.Instance.m_Player != null)
         {
             PlatformPlayerBase p = PlayerManager.Instance.m_Player;
             m_TempVector = (Vector2)(p.transform.position - m_Enemy.transform.position);
 
             m_Enemy.m_Direction = m_TempVector.normalized;
-            m_Enemy.Move(m_Enemy.m_Direction * 0.1f);
+            m_Enemy.Shot(m_TempVector.normalized);
 
-            if (m_TempVector.magnitude < 0.2f) return true;
+            return true;
         }
         return false;
     }

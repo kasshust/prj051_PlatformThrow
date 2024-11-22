@@ -131,7 +131,7 @@ public class Controller2D : RaycastController
             rayOrigin += Vector2.right * (m_VerticalRaySpacing * i + moveAmount.x);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, m_GroundMask);
 
-            Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
+            Debug.DrawRay(rayOrigin, Vector2.up * (directionY * rayLength), Color.red);
 
             if (hit)
             {
